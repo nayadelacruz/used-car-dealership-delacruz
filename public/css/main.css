@@ -1,30 +1,93 @@
 html, body {
-    background-color: rgb(243, 245, 245);
+    background-color: white;
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 20px;
 }
 
 body {
-    nav {
-        ul {
-            list-style-type: none;
-            padding: 0;
-        }
 
-        li {
-            display: inline;
-            margin-right: 15px;
-        }
-
-        a {
-            text-decoration: none;
-            color: #333;
-            font-weight: bold;
-
-            &:hover {
-                color: #4998e7;
-            }
-        }
+    header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 15px 40px;
+        background-color: #fff;
     }
+
+    /* Logo */
+    .logo img {
+        height: 80px;
+        width: auto;
+    }
+
+    /* Navigation */
+    .navegation nav ul {
+        display: flex;
+        list-style: none;
+        gap: 40px;
+        margin: 0;
+        padding: 0;
+    }
+
+    .navegation nav ul li a {
+        text-decoration: none;
+        color: #333;
+        font-size: 18px;
+        font-weight: bold;
+        transition: color 0.3s;
+    }
+
+    .navegation nav ul li a:hover {
+        color: #65aeeb;
+    }
+
+    /* Buttons */
+    .registration {
+        display: flex;
+        gap: 15px;
+    }
+
+    .registration button {
+        padding: 10px 20px;
+        border: none;
+        background-color: #65aeeb;;
+        color: white;
+        font-weight: bold;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+
+    .registration button:hover {
+        background-color: #2756ba;
+    }  
+    
+    /* Hero Section */
+    .hero {
+    height: 500px;
+    width: 100%;
+
+    background-image: url("/images/hero-suv.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    position: relative;
+    }
+
+    /* Hero title */
+    .hero h1 {
+    position: relative;
+    color: white;
+    font-size: 4rem;
+    font-weight: bold;
+    text-align: center;
+    z-index: 1;
+    text-shadow: 3px 3px 8px rgba(0, 0, 0, 0.8);
+}
 }

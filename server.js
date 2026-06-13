@@ -2,6 +2,7 @@
 import express from 'express';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import { setupDatabase, testConnection } from './src/models/setup.js';
 
 
 //const name = process.env.NAME; // <-- NEW
@@ -48,6 +49,8 @@ app.get('/details', (req, res) => {
 });
 
 // Start the server and listen on the specified port
-app.listen(PORT, () => {
+app.listen(PORT, async () => {
+    await setupDatabase();
+    await testConnection();
     console.log(`Server is running on http://127.0.0.1:${PORT}`);
 });

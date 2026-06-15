@@ -1,1 +1,0 @@
-// Go to part 7 of the Unit 3 activity :Introduction to PostgreSQL with Express to update this part 

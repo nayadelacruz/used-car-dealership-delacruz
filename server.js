@@ -7,9 +7,7 @@ import session from 'express-session';
 import connectPgSimple from 'connect-pg-simple';
 import { caCert } from './src/models/db.js';
 import { startSessionCleanup } from './src/utils/session-cleanup.js';
-
-
-//const name = process.env.NAME; // <-- NEW
+import routes from './src/controllers/routes.js';
 
 /**
  * Declare Important Variables
@@ -70,18 +68,8 @@ app.set('views', path.join(__dirname, 'src/views'));
 /**
  * Declare Routes
  */
-app.get('/', (req, res) => {
-    const title = 'Welcome Home';
-    res.render('home', { title });
-});
-app.get('/categories', (req, res) => {
-    const title = 'Categories';
-    res.render('categories', { title });
-});
-app.get('/details', (req, res) => {
-    const title = 'Our Products';
-    res.render('details', { title });
-});
+app.use('/', routes);
+
 
 // Start the server and listen on the specified port
 app.listen(PORT, async () => {

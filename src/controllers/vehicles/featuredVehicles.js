@@ -1,8 +1,8 @@
-import { getFeaturedVehicles } from '../models/featuredVehicles.js';
+import { getFeaturedVehicles } from "../../models/vehicles/featuredVehicles.js";
 
-const renderHome = async (req, resizeBy, next) => {
+const renderHome = async (req, res, next) => {
     try {
-        const featuredVehicles = await featuredVehicles();
+        const featuredVehicles = await getFeaturedVehicles();
 
         res.render('home', {
             title: 'Welcome Home',

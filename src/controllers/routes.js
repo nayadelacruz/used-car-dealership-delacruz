@@ -1,5 +1,5 @@
 import express from 'express';
-import { renderHome } from './vehicleController.js';
+import { renderHome } from '../controllers/vehicles/featuredVehicles.js';
 
 const router = express.Router();
 //router to home

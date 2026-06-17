@@ -11,3 +11,5 @@ const getFeaturedVehicles = async () => {
 
     return result.rows;
 };
+
+export { getFeaturedVehicles};

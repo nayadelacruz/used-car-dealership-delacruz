@@ -3,11 +3,14 @@ import express from 'express';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import { setupDatabase, testConnection } from './src/models/setup.js';
+
+// Import MVC Components
 import session from 'express-session';
 import connectPgSimple from 'connect-pg-simple';
 import { caCert } from './src/models/db.js';
 import { startSessionCleanup } from './src/utils/session-cleanup.js';
 import routes from './src/controllers/routes.js';
+import { addLocalVariables} from './src/middleware/global.js';
 
 /**
  * Declare Important Variables
@@ -65,11 +68,12 @@ app.set('view engine', 'ejs');
 // Tell Express where to find your templates
 app.set('views', path.join(__dirname, 'src/views'));
 
+// GLobal Middleware
+app.use(addLocalVariables);
 /**
  * Declare Routes
  */
 app.use('/', routes);
-
 
 // Start the server and listen on the specified port
 app.listen(PORT, async () => {

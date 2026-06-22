@@ -37,6 +37,6 @@ const getCategories = async () => {
         ORDER BY name   
         `);
     return result.rows;    
-}
+};
 
 export { getListOfVehicles, getByCategory, getCategories };

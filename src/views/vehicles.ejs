@@ -1,5 +1,14 @@
 <%- include('partials/header') %>
 <main>
     <h1><%= title %></h1>
+    <p>Browse our list of vehicles and click on any name to view their details.</p>
+    <div class="sort-options">
+        <span>Sort by: </span>
+        <a href="/vehicles" class="<%= !currentCategory ? 'active' : '' %>">All</a>
+        <% categories.forEach(category => { %>
+            <a href="/vehicles?category" class="<%= category.category_id ? 'active' : '' %>"><%= category.name %></a>
+        <% }); %>
+    </div>
+    
 </main>
 <%- include('partials/footer') %>

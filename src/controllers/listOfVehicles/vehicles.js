@@ -1,4 +1,4 @@
-import { getListOfVehicles, getByCategory, getCategories } from "../../models/vehicles/list";
+import { getListOfVehicles, getByCategory, getCategories } from "../../models/vehicles/list.js";
 
 const vehicleListPage = async (req, res, next) => {
     try {
@@ -15,7 +15,7 @@ const vehicleListPage = async (req, res, next) => {
 
         const categories = await getCategories();
 
-        res.render('vehicles/list', {
+        res.render('vehicles', {
             title: 'Vehicle Inventory',
             vehicles,
             categories,

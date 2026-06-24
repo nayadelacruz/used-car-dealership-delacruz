@@ -26,7 +26,7 @@
                     <p class="mileage"><%= vehicle.mileage %> miles</p>
                     <p class="category"><%= vehicle.category_name %></p>
                     <p class="transmission"><%= vehicle.transmission %></p>
-                    <a href="/vehicleDetails">Details</a>
+                    <a href="/vehicles/<%= vehicle.vehicle_id %>">Details</a>
                 </div>
             <% }); %>
     </div>

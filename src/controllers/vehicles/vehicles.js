@@ -14,6 +14,7 @@ const vehicleListPage = async (req, res, next) => {
         }
 
         const categories = await getCategories();
+        
 
         res.render('vehicles/vehicles', {
             title: 'Vehicle Inventory',
@@ -27,11 +28,14 @@ const vehicleListPage = async (req, res, next) => {
     }
 };
 
-const displayVehicleDetails = async (req,res, next) => {
+const displayVehicleDetails = async (req, res, next) => {
 
+    const vehicleId = req.params.vehicleId;
+    const vehicle = await getVehicleById(vehicleId);
     res.render('vehicles/vehicleDetails', {
-        title: 'Details',
+        title: `${vehicle.year} ${vehicle.make} ${vehicle.model}`,
+        vehicle
     });
-}
+};
 
 export { vehicleListPage, displayVehicleDetails};

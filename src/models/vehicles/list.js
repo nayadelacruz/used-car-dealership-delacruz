@@ -39,8 +39,18 @@ const getCategories = async () => {
     return result.rows;    
 };
 
-const getVehicleById= async(vehicleId) => {
+const getVehicleById= async (vehicleId) => {
+    const result =await db.query(`
+        SELECT 
+            vehicles_details.*,
+            categories.name AS category_name
+        FROM vehicles_details
+        JOIN categories
+            ON vehicles_details.category_id = categories.category_id
+        WHERE vehicle_details.vehicle_id = $1
+        `, [vehicleId]);
 
+    return result.rows[0];    
 }
 
 export { getListOfVehicles, getByCategory, getCategories, getVehicleById };

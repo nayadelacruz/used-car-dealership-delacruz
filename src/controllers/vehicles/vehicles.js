@@ -1,4 +1,4 @@
-import { getListOfVehicles, getByCategory, getCategories } from "../../models/vehicles/list.js";
+import { getListOfVehicles, getByCategory, getCategories, getVehicleById } from "../../models/vehicles/list.js";
 
 const vehicleListPage = async (req, res, next) => {
     try {
@@ -28,7 +28,7 @@ const vehicleListPage = async (req, res, next) => {
 };
 
 const displayVehicleDetails = async (req,res, next) => {
-    
+
     res.render('vehicles/vehicleDetails', {
         title: 'Details',
     });

@@ -1,0 +1,110 @@
+/* Category Filter */
+.filter-options {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    flex-wrap: wrap;
+
+    margin: 30px 0;
+    padding: 20px;
+
+    background-color: #f8f9fb;
+    border-radius: 10px;
+}
+
+.filter-options span {
+    font-weight: bold;
+    font-size: 1.1rem;
+    color: #333;
+}
+
+.filter-options a {
+    text-decoration: none;
+
+    padding: 8px 16px;
+
+    border: 2px solid #65aeeb;
+    border-radius: 20px;
+
+    color: #65aeeb;
+    font-weight: 600;
+
+    transition: all 0.3s ease;
+}
+
+.filter-options a:hover {
+    background-color: #65aeeb;
+    color: white;
+}
+
+/* Active Category */
+.sort-options a.active {
+    background-color: #65aeeb;
+    color: white;
+}
+/* Vehicle List */
+.listOfVehicles {
+    padding: 20px 40px;
+    background-color: #f8f9fb;
+}
+
+.listOfVehicles h2 {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 40px;
+    color: #333;
+}
+
+.cardPerVehicleList {
+    background-color: white;
+    border-radius: 12px;
+    margin: 5px;
+    padding: 20px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s ease;
+}
+
+.cardPerVehicleList img {
+    width: 100%;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 15px;
+}
+
+.cardPerVehicleList .carName {
+    font-size: 1.4rem;
+    color: #222;
+    margin-bottom: 10px;
+}
+
+.cardPerVehicleList h4 {
+    color: #65aeeb;
+    font-size: 1.3rem;
+    margin-bottom: 10px;
+}
+
+.cardPerVehicleList p {
+    color: #666;
+    margin: 5px 0;
+}
+
+.cardPerVehicleList a {
+    margin-top: auto;
+    padding: 12px;
+    border: none;
+    border-radius: 6px;
+    background-color: #65aeeb;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    text-decoration: none; 
+    text-align: center;
+}
+
+.cardPerVehicleList a:hover {
+    background-color: #2756ba;
+}

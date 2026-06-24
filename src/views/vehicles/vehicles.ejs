@@ -1,0 +1,34 @@
+<%- include('../partials/header') %>
+<main>
+    <h1><%= title %></h1>
+    <p>Browse our list of vehicles and click on any name to view their details.</p>
+    <div class="filter-options">
+        <span>Filter by: </span>
+        <a href="/vehicles" class="<%= !currentCategory ? 'active' : '' %>">All</a>
+        <% categories.forEach(category => { %>
+            <a href="/vehicles?category=<%= category.category_id %>" class="<%= currentCategory == category.category_id ? 'active' : '' %>"><%= category.name %></a>
+        <% }); %>
+    </div>
+<%# Necesito ahora que se vea la list de carros con poca informacion como con los featured vehicles entonces usare el sinax de esas tarjetas pero le dare diferente css  %>
+    <div class="listOfVehicles">
+        <%
+            const selectedCategory = categories.find(
+                category => category.category_id == currentCategory
+            );
+        %>
+
+        <h2><%= selectedCategory ? selectedCategory.name : 'All Vehicles' %></h2>
+            <% vehicles.forEach(vehicle => { %>            
+                <div class="cardPerVehicleList">
+                    <img src="<%= vehicle.image_url %>" alt="<%= vehicle.make %> <%= vehicle.model %>">
+                    <h3 class="carName"><%= vehicle.make %> <%= vehicle.model %></h3>
+                    <h4>$<%= vehicle.price %></h4>
+                    <p class="mileage"><%= vehicle.mileage %> miles</p>
+                    <p class="category"><%= vehicle.category_name %></p>
+                    <p class="transmission"><%= vehicle.transmission %></p>
+                    <a href="/vehicleDetails">Details</a>
+                </div>
+            <% }); %>
+    </div>
+</main>
+<%- include('../partials/footer') %>

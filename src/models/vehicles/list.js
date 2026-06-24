@@ -39,4 +39,8 @@ const getCategories = async () => {
     return result.rows;    
 };
 
-export { getListOfVehicles, getByCategory, getCategories };
+const getVehicleById= async(vehicleId) => {
+
+}
+
+export { getListOfVehicles, getByCategory, getCategories, getVehicleById };

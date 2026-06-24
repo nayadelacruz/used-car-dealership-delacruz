@@ -15,7 +15,7 @@ const vehicleListPage = async (req, res, next) => {
 
         const categories = await getCategories();
 
-        res.render('vehicles', {
+        res.render('vehicles/vehicles', {
             title: 'Vehicle Inventory',
             vehicles,
             categories,
@@ -27,20 +27,11 @@ const vehicleListPage = async (req, res, next) => {
     }
 };
 
-/*const vehicleDetails = async (req, res, next) => {
-    const vehicleId = req.param.facultyID;
-    const vehicle = await getByCategory(vehicleId);
+const displayVehicleDetails = async (req,res, next) => {
+    
+    res.render('vehicles/vehicleDetails', {
+        title: 'Details',
+    });
+}
 
-    if {
-
-    } else {
-        res.render('vehicles/list', {
-            title: `${vehicle.make} ${vehicle.model}`
-            vehicle: vehicle
-
-        })
-    }
-
-    };*/
-
-export { vehicleListPage};
+export { vehicleListPage, displayVehicleDetails};

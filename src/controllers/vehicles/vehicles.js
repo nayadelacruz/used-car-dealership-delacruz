@@ -1,4 +1,4 @@
-import { getListOfVehicles, getByCategory, getCategories, getVehicleById } from "../../models/vehicles/list.js";
+import { getListOfVehicles, getByCategory, getCategories, getVehicleById, getVehicleImages } from "../../models/vehicles/list.js";
 
 const vehicleListPage = async (req, res, next) => {
     try {
@@ -15,7 +15,6 @@ const vehicleListPage = async (req, res, next) => {
 
         const categories = await getCategories();
         
-
         res.render('vehicles/vehicles', {
             title: 'Vehicle Inventory',
             vehicles,
@@ -32,9 +31,11 @@ const displayVehicleDetails = async (req, res, next) => {
 
     const vehicleId = req.params.vehicleId;
     const vehicle = await getVehicleById(vehicleId);
+    const images = await getVehicleImages(vehicleId)
     res.render('vehicles/vehicleDetails', {
         title: `${vehicle.year} ${vehicle.make} ${vehicle.model}`,
-        vehicle
+        vehicle,
+        images
     });
 };
 

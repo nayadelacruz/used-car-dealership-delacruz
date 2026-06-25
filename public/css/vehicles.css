@@ -108,3 +108,88 @@
 .cardPerVehicleList a:hover {
     background-color: #2756ba;
 }
+/* Vehicle Detail Page */
+.vehicleTitle {
+    text-align: center;
+    font-size: 2.8rem;
+    color: #222;
+    margin: 40px 0 30px;
+}
+.vehicleImage {
+    display: block;
+    width: 100%;
+    max-width: 700px;
+    height: 400px;
+    object-fit: cover;
+
+    margin: 0 auto 35px;
+
+    border-radius: 12px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+.detail {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 15px 25px;
+
+    border-bottom: 1px solid #ddd;
+    background-color: white;
+}
+
+.detail:nth-child(even) {
+    background-color: #f8f9fb;
+}
+
+.detailName {
+    font-size: 1rem;
+    color: #333;
+    font-weight: bold;
+    margin: 0;
+    letter-spacing: 0.5px;
+}
+
+.detail p {
+    margin: 0;
+    color: #666;
+    font-size: 1rem;
+    text-align: right;
+}
+
+/* Details card container effect */
+main {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 30px 20px;
+}
+
+main .detail:first-of-type {
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+}
+
+main .detail:last-of-type {
+    border-bottom-left-radius: 12px;
+    border-bottom-right-radius: 12px;
+    border-bottom: none;
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+    .vehicleTitle {
+        font-size: 2rem;
+    }
+
+    .detail {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 5px;
+    }
+
+    .detail p {
+        text-align: left;
+    }
+}

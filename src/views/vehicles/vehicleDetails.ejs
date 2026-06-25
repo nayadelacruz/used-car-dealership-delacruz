@@ -1,6 +1,7 @@
 <%- include('../partials/header') %>
 <main>
-    <h2><%= vehicle.year %> <%=vehicle.make %> <%= vehicle.model %></h2>
+    <h1 class="vehicleTitle"><%= vehicle.year %> <%= vehicle.make %> <%= vehicle.model %></h2>
+    <img class="vehicleImage" src="<%= vehicle.image_url %>" alt="<%= vehicle.year %> <%= vehicle.make %> <%= vehicle.model %>">
     <div class="detail">
         <h3 class="detailName">MAKE</h3>
         <p><%= vehicle.make %></p> 

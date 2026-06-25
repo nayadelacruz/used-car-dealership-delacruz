@@ -4,7 +4,7 @@ const getFeaturedVehicles = async () => {
     const result = await db.query(`
         SELECT 
             vehicles_details.*,
-            vehicle_images.image_url AS vehicle_image_url
+            vehicle_images.image_url AS vehicle_image_url,
             vehicle_images.alt_text AS vehicle_image_alt
         FROM vehicles_details
         JOIN vehicle_images

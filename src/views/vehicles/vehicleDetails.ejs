@@ -1,2 +1,53 @@
 <%- include('../partials/header') %>
+<main>
+    <h2><%= vehicle.year %> <%=vehicle.make %> <%= vehicle.model %></h2>
+    <div class="detail">
+        <h3 class="detailName">MAKE</h3>
+        <p><%= vehicle.make %></p> 
+    </div>
+    <div class="detail">
+        <h3 class="detailName">MODEL</h3>
+        <p><%= vehicle.model %></p> 
+    </div>
+    <div class="detail">
+        <h3 class="detailName">YEAR</h3>
+        <p><%= vehicle.year %></p> 
+    </div> 
+    <div class="detail">
+        <h3 class="detailName">PRICE</h3>
+        <p>$<%= vehicle.price %></p> 
+    </div> 
+    <div class="detail">
+        <h3 class="detailName">MILEAGE</h3>
+        <p><%= vehicle.mileage %></p> 
+    </div> 
+    <div class="detail">
+        <h3 class="detailName">CATEGORY</h3>
+        <p><%= vehicle.category_name %></p> 
+    </div> 
+    <div class="detail">
+        <h3 class="detailName">TRANSMISSION</h3>
+        <p><%= vehicle.transmission %></p> 
+    </div> 
+    <div class="detail">
+        <h3 class="detailName">FUEL TYPE</h3>
+        <p><%= vehicle.fuel_type %></p> 
+    </div>  
+    <div class="detail">
+        <h3 class="detailName">ENGINE</h3>
+        <p><%= vehicle.engine %></p> 
+    </div> 
+    <div class="detail">
+        <h3 class="detailName">HORSEPOWER</h3>
+        <p><%= vehicle.horsepower %></p> 
+    </div> 
+    <div class="detail">
+        <h3 class="detailName">EXTERIOR COLOR</h3>
+        <p><%= vehicle.exterior_color %></p> 
+    </div> 
+    <div class="detail">
+        <h3 class="detailName">INTERIOR COLOR</h3>
+        <p><%= vehicle.interior_color %></p> 
+    </div> 
+</main>
 <%- include('../partials/footer') %>

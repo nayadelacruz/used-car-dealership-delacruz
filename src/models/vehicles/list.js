@@ -39,7 +39,7 @@ const getCategories = async () => {
     return result.rows;    
 };
 
-const getVehicleById= async (vehicleId) => {
+const getVehicleById = async (vehicleId) => {
     const result =await db.query(`
         SELECT 
             vehicles_details.*,
@@ -47,7 +47,7 @@ const getVehicleById= async (vehicleId) => {
         FROM vehicles_details
         JOIN categories
             ON vehicles_details.category_id = categories.category_id
-        WHERE vehicle_details.vehicle_id = $1
+        WHERE vehicles_details.vehicle_id = $1
         `, [vehicleId]);
 
     return result.rows[0];    

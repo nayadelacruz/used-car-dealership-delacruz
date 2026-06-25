@@ -10,7 +10,7 @@
             <div class="FeaturedVehiclesContainer">
                 <% featuredVehicles.forEach(vehicle => { %>
                     <div class="featureVehicleCard">
-                        <img src="<%= vehicle.image_url %>" alt="<%= vehicle.make %> <%= vehicle.model %>">
+                        <img src="<%= vehicle.vehicle_image_url %>" alt="<%= vehicle.vehicle_image_alt %>">
                         <h3 class="carName"><%= vehicle.make %> <%= vehicle.model %></h3>
                         <h4>$<%= vehicle.price %></h4>
                         <p class="mileage"><%= vehicle.mileage %> miles</p>

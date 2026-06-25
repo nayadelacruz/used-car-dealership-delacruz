@@ -20,7 +20,7 @@
         <h2><%= selectedCategory ? selectedCategory.name : 'All Vehicles' %></h2>
             <% vehicles.forEach(vehicle => { %>            
                 <div class="cardPerVehicleList">
-                    <img src="<%= vehicle.image_url %>" alt="<%= vehicle.make %> <%= vehicle.model %>">
+                    <img src="<%= vehicle.vehicle_image_url %>" alt="<%= vehicle.vehicle_image_alt %>">
                     <h3 class="carName"><%= vehicle.make %> <%= vehicle.model %></h3>
                     <h4>$<%= vehicle.price %></h4>
                     <p class="mileage"><%= vehicle.mileage %> miles</p>

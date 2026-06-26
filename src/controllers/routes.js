@@ -15,7 +15,4 @@ router.get('/vehicles/:vehicleId', displayVehicleDetails);
 // Contact form routes
 router.use('/contactForm', contactRoutes);
 
-
-
-
 export default router;

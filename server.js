@@ -70,6 +70,14 @@ app.set('views', path.join(__dirname, 'src/views'));
 
 // GLobal Middleware
 app.use(addLocalVariables);
+
+// Middleware to add global data to all templates
+app.use((req, res, next) => {
+    // Add current year for copyright
+    res.locals.currentYear = new Date().getFullYear();
+
+    next();
+});
 /**
  * Declare Routes
  */

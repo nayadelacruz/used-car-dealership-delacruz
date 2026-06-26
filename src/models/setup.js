@@ -39,6 +39,13 @@ const setupDatabase = async () => {
     const seedPath = join(__dirname, 'sql', 'seed.sql');
     const seedSQL = fs.readFileSync(seedPath, 'utf8');
     await db.query(seedSQL);
+    // Run contactForm.sql if it exists (for student assignments)
+    const applicationDataPath = join(__dirname, 'sql', 'applicationData.sql');
+    if (fs.existsSync(applicationDataPath)) {
+        const applicationDataSQL = fs.readFileSync(applicationDataPath, 'utf8');
+        await db.query(applicationDataSQL);
+        console.log('applicationData database tables initialized');
+    }
     console.log('Database seeded successfully');
     
     return true;

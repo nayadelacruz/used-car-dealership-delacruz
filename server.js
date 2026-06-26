@@ -4,6 +4,7 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 import { setupDatabase, testConnection } from './src/models/setup.js';
 
+
 // Import MVC Components
 import session from 'express-session';
 import connectPgSimple from 'connect-pg-simple';
@@ -11,6 +12,8 @@ import { caCert } from './src/models/db.js';
 import { startSessionCleanup } from './src/utils/session-cleanup.js';
 import routes from './src/controllers/routes.js';
 import { addLocalVariables} from './src/middleware/global.js';
+import flash from './src/middleware/flash.js';
+
 
 /**
  * Declare Important Variables
@@ -62,6 +65,10 @@ startSessionCleanup();
 // Serve static files from the public directory
 app.use(express.static(path.join(__dirname, 'public')));
 
+// Allow Express to receive and process POST data
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+
 // Set EJS as the templating engine
 app.set('view engine', 'ejs');
 
@@ -70,6 +77,9 @@ app.set('views', path.join(__dirname, 'src/views'));
 
 // GLobal Middleware
 app.use(addLocalVariables);
+
+// Flash message middleware (must come after session and global middleware)
+app.use(flash);
 
 // Middleware to add global data to all templates
 app.use((req, res, next) => {

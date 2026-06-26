@@ -6,6 +6,7 @@
     <title><%= title %></title>
     <link rel="stylesheet" href="/css/main.css">
     <link rel="stylesheet" href="/css/vehicles.css">
+    <link rel="stylesheet" href="/css/contactForm.css">
     <% if (NODE_ENV.includes('dev')) { %>
         <script>
             // Get the current hostname and port from the browser
@@ -33,7 +34,8 @@
                 <ul>
                     <li><a href="/">Home</a></li>
                     <li><a href="/vehicles">Vehicles</a></li>
-                    <li><a href="/contact">Contact</a></li>
+                    <li><a href="/contactForm">Contact</a></li>
+                    <li><a href="/contactForm/responses">Contact Responses</a></li>
                 </ul>
             </nav>
         </div> 
@@ -41,4 +43,21 @@
             <button>LOGIN</button>
             <button>REGISTER</button>
         </div>
+
+        <% 
+            const messages = flash();
+            const hasMessages = Object.values(messages).some(arr => arr.length > 0);
+        %>
+
+        <% if (hasMessages) { %>
+            <div class="flash-messages">
+                <% Object.keys(messages).forEach(type => { %>
+                    <% messages[type].forEach(message => { %>
+                        <div class="flash <%= type %>">
+                            <%= message %>
+                        </div>
+                    <% }); %>
+                <% }); %>
+            </div>
+        <% } %>
     </header>

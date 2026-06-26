@@ -1,0 +1,112 @@
+/* Contact Form Styles */
+.contact-form {
+    max-width: 600px;
+    margin: 2rem auto;
+    padding: 2rem;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    background-color: #fff;
+    font-family: Arial, sans-serif;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+
+    h2 {
+        color: #333;
+        border-bottom: 2px solid #65aeeb;
+        padding-bottom: 0.5rem;
+        margin: 0 0 1.5rem 0;
+        text-align: center;
+    }
+
+    .form-group {
+        margin-bottom: 1.5rem;
+
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+            color: #333;
+        }
+
+        input,
+        textarea {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 1rem;
+            font-family: inherit;
+            transition: border-color 0.3s ease;
+
+            &:focus {
+                outline: none;
+                border-color: #65aeeb;
+            }
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 150px;
+        }
+    }
+
+    button[type="submit"] {
+        width: 100%;
+        padding: 1rem;
+        background-color: #65aeeb;
+        color: white;
+        border: none;
+        border-radius: 6px;
+        font-size: 1rem;
+        font-weight: bold;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+
+        &:hover {
+            background-color: #2756ba;
+        }
+    }
+}
+
+/* Contact Responses Styles */
+.contact-responses {
+    max-width: 800px;
+    margin: 2rem auto;
+    font-family: Arial, sans-serif;
+
+    .response-item {
+        background-color: #fff;
+        border: 1px solid #ddd;
+        border-radius: 12px;
+        padding: 1.5rem;
+        margin-bottom: 1.5rem;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+
+        .response-subject {
+            color: #333;
+            border-bottom: 2px solid #65aeeb;
+            padding-bottom: 0.5rem;
+            margin: 0 0 1rem 0;
+            font-size: 1.3rem;
+        }
+
+        .response-message {
+            color: #555;
+            line-height: 1.6;
+            margin: 0 0 1rem 0;
+            white-space: pre-wrap;
+        }
+
+        .response-date {
+            color: #888;
+            font-size: 0.875rem;
+            margin: 0;
+        }
+    }
+
+    .no-responses {
+        text-align: center;
+        color: #666;
+        font-style: italic;
+        padding: 2rem;
+    }
+}

@@ -9,11 +9,11 @@ CREATE TABLE IF NOT EXISTS contact_form (
 );
 
 -- Registration form table
-CREATE TABLE IF NOT EXITS registration {
+CREATE TABLE IF NOT EXITS users (
     id SERIAL PRIMARY KEY,
     name VARCHAR(100) UNIQUE NO NULL,
     email VARCHAR(100) NOT NULL,
     password VARCHAR(100) NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-};
+);

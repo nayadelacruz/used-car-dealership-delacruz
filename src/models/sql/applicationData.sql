@@ -9,7 +9,7 @@ CREATE TABLE IF NOT EXISTS contact_form (
 );
 
 -- Registration form table
-CREATE TABLE IF NOT EXITS users (
+CREATE TABLE IF NOT EXISTS users (
     id SERIAL PRIMARY KEY,
     name VARCHAR(100) UNIQUE NO NULL,
     email VARCHAR(100) NOT NULL,

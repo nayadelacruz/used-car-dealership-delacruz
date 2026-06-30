@@ -4,7 +4,6 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 import { setupDatabase, testConnection } from './src/models/setup.js';
 
-
 // Import MVC Components
 import session from 'express-session';
 import connectPgSimple from 'connect-pg-simple';
@@ -13,6 +12,7 @@ import { startSessionCleanup } from './src/utils/session-cleanup.js';
 import routes from './src/controllers/routes.js';
 import {addLocalVariables, setHeadAssetsFunctionality} from './src/middleware/global.js';
 import flash from './src/middleware/flash.js';
+
 
 
 /**
@@ -26,6 +26,7 @@ const PORT = process.env.PORT || 3000;
  * Setup Express Server
  */
 const app = express();
+
 
 // Initialize PostgreSQL session store
 const pgSession = connectPgSimple(session);

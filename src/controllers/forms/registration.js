@@ -2,7 +2,7 @@ import { Router } from 'express';
 import { body, validationResult } from 'express-validator';
 import bcrypt from 'bcrypt';
 import { emailExists, saveUser, getAllUsers, getUserById, updateUser, deleteUser} from '../../models/forms/registration.js';
-
+import { requireLogin } from '../../middleware/auth.js';
 const router = Router();
 
 /**
@@ -208,6 +208,42 @@ const processEditAccount = async (req, res) => {
 };
 
 /**
+ * Process account deletion
+ * Only admins can delete accounts, and they cannot delete themselves
+ */
+const processDeleteAccount = async (req, res) => {
+    const targetUserId = parseInt(req.params.id);
+    const currentUser = req.session.user;
+
+    // Only admins can delete accounts
+    if (currentUser.roleName !== 'admin') {
+        req.flash('error', 'You do not have permission to delete accounts.');
+        return res.redirect('/register/list');
+    }
+
+    // Prevent admins from deleting their own account
+    if (currentUser.id === targetUserId) {
+        req.flash('error', 'You cannot delete your own account.');
+        return res.redirect('/register/list');
+    }
+
+    try {
+        const deleted = await deleteUser(targetUserId);
+
+        if (deleted) {
+            req.flash('success', 'User account deleted successfully.');
+        } else {
+            req.flash('error', 'User not found or already deleted.');
+        }
+    } catch (error) {
+        console.error('Error deleting user:', error);
+        req.flash('error', 'An error occurred while deleting the account.');
+    }
+
+    res.redirect('/register/list');
+};
+
+/**
  * GET /register - Display the registration form
  */
 router.get('/', showRegistrationForm);
@@ -231,5 +267,10 @@ router.get('/:id/edit', requireLogin, showEditAccountForm);
  * POST /register/:id/edit - Process account edit
  */
 router.post('/:id/edit', requireLogin, editValidation, processEditAccount);
+
+/**
+ * POST /register/:id/delete - Delete user account
+ */
+router.post('/:id/delete', requireLogin, processDeleteAccount);
 
 export default router;

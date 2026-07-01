@@ -20,7 +20,7 @@ CREATE TABLE IF NOT EXISTS roles (
 INSERT INTO roles (role_name, role_description) 
 VALUES 
     ('user', 'Standard user with basic access'),
-    ('admin', 'Administrator with full system access')
+    ('admin', 'Administrator with full system access'),
     ('employee', 'User who works for the organization and has access to the system to perform assigned job responsibilities')
 ON CONFLICT (role_name) DO NOTHING;
 
@@ -34,4 +34,50 @@ CREATE TABLE IF NOT EXISTS users (
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
+
+--Service Request Status table
+CREATE TABLE IF NOT EXISTS service_request_status (
+    id SERIAL PRIMARY KEY,
+    status_name VARCHAR(50) UNIQUE NOT NULL
+);
+
+INSERT INTO service_request_status (status_name)
+VALUES
+    ('Submitted'),
+    ('In Progress'),
+    ('Completed')
+ON CONFLICT (status_name) DO NOTHING;
+
+-- Service Request table
+CREATE TABLE IF NOT EXISTS service_requests (
+    id SERIAL PRIMARY KEY,
+    user_id INTEGER NOT NULL REFERENCES users(id),
+    vehicle VARCHAR(100) NOT NULL,
+    service_type VARCHAR(100) NOT NULL,
+    description TEXT,
+    status_id INTEGER NOT NULL DEFAULT 1 REFERENCES service_request_status(id),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+-- Service Request Notes table
+CREATE TABLE IF NOT EXISTS service_request_notes (
+    id SERIAL PRIMARY KEY,
+    service_request_id INTEGER NOT NULL REFERENCES service_requests(id),
+    employee_id INTEGER REFERENCES users(id),
+    note TEXT NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+-- Reviews table
+CREATE TABLE IF NOT EXISTS reviews (
+    id SERIAL PRIMARY KEY,
+    user_id INTEGER NOT NULL REFERENCES users(id),
+    vehicle_id INTEGER NOT NULL REFERENCES vehicles_details(vehicle_id),
+    comment TEXT NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+
 

@@ -21,6 +21,7 @@ INSERT INTO roles (role_name, role_description)
 VALUES 
     ('user', 'Standard user with basic access'),
     ('admin', 'Administrator with full system access')
+    ('employee', 'User who works for the organization and has access to the system to perform assigned job responsibilities')
 ON CONFLICT (role_name) DO NOTHING;
 
 -- Registration form table

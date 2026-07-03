@@ -4,8 +4,7 @@
     <div class="images">
         <% images.forEach(image => { %>
             <img class="vehicleImage" src="<%= image.image_url %>" alt="<%= image.alt_text %>">
-        <% }); %>
-        
+        <% }); %>       
     </div>
     <div class="detail">
         <h3 class="detailName">MAKE</h3>
@@ -55,5 +54,13 @@
         <h3 class="detailName">INTERIOR COLOR</h3>
         <p><%= vehicle.interior_color %></p> 
     </div> 
+    <div>
+        <!--<a href="/new/<%= vehicle.vehicle_id %>" class="review">
+            Leave a Review
+        </a> -->
+        <a href="/reviews/new/<%= vehicle.vehicle_id %>" class="reviewBtn">
+            Leave a Review
+        </a>
+    </div>
 </main>
 <%- include('../partials/footer') %>

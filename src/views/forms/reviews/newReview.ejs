@@ -1,0 +1,38 @@
+<%- include('../../partials/header') %>
+
+<div class="review-container">
+
+    <h1><%= title %></h1>
+
+    <form class="review-form" action="/reviews" method="POST">
+
+        <input
+            type="hidden"
+            name="vehicleId"
+            value="<%= vehicleId %>"
+        >
+
+        <label for="comment">Review</label>
+
+        <textarea
+            id="comment"
+            name="comment"
+            required
+            minlength="10"
+            maxlength="1000"
+            placeholder="Share your experience with this vehicle..."
+        ></textarea>
+
+        <button type="submit">
+            Submit Review
+        </button>
+
+    </form>
+
+    <a class="back-link" href="/vehicles/<%= vehicleId %>">
+        ← Back to Vehicle Details
+    </a>
+
+</div>
+
+<%- include('../../partials/footer') %>

@@ -71,7 +71,7 @@ CREATE TABLE IF NOT EXISTS service_request_notes (
 
 -- Reviews table
 CREATE TABLE IF NOT EXISTS reviews (
-    id SERIAL PRIMARY KEY,
+    review_id SERIAL PRIMARY KEY,
     user_id INTEGER NOT NULL REFERENCES users(id),
     vehicle_id INTEGER NOT NULL REFERENCES vehicles_details(vehicle_id),
     comment TEXT NOT NULL,

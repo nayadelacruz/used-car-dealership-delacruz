@@ -1,6 +1,3 @@
-// Create a new router instance
-const router = Router();
-
 import express from 'express';
 import { renderHome } from './featuredVehicles/featuredVehicles.js';
 import { vehicleListPage, displayVehicleDetails } from './vehicles/vehicles.js';
@@ -8,8 +5,15 @@ import contactRoutes from './forms/contactForm.js';
 import registrationRoutes from './forms/registration.js';
 import loginRoutes from './forms/login.js';
 import { processLogout, showDashboard } from './forms/login.js';
-import { requireLogin } from '../middleware/auth.js';
+import { requireLogin, requireRole } from '../middleware/auth.js';
 import { Router } from 'express';
+import { body } from 'express-validator';
+import { reviewValidation, showReviewForm, handleReviewSubmission, showUserReviews,
+        showEditReviewForm, handleReviewEdits,
+        handleReviewEdit
+        } from './forms/reviews.js';
+
+const router = Router();
 
 router.use('/vehicles', (req, res, next) => {
     res.addStyle('<link rel="stylesheet" href="/css/vehicles.css">');
@@ -31,7 +35,11 @@ router.use('/login', (req, res, next) => {
     res.addStyle('<link rel="stylesheet" href="/css/login.css">');
     next();
 });
-
+// Add login-specific styles to all reviews routes
+router.use('/reviews', (req, res, next) => {
+    res.addStyle('<link rel="stylesheet" href="/css/reviews.css">');
+    next();
+});
 //router to home
 router.get('/', renderHome);
 
@@ -51,4 +59,20 @@ router.use('/login', loginRoutes);
 router.get('/logout', processLogout);
 router.get('/dashboard', requireLogin, showDashboard);
 
+//Reviews routs
+router.get('/reviews/new/:vehicleId', requireLogin, showReviewForm);
+router.post(
+    '/reviews',
+    requireLogin,
+    reviewValidation,
+    handleReviewSubmission
+);
+router.get('/reviews/myReviews', requireLogin, showUserReviews);
+router.get('/reviews/edit/:reviewId', requireLogin, showEditReviewForm);
+router.post(
+    '/reviews/edit/:reviewId',
+    requireLogin,
+    reviewValidation,
+    handleReviewEdit
+);
 export default router;

@@ -68,6 +68,8 @@ const processLogin = async (req, res) => {
 
         req.session.user = user;
         req.flash('success', `Welcome ${user.name}`);
+        // TEMPORARY
+        console.log(req.session);
         return res.redirect('/dashboard');
 
     } catch (error) {

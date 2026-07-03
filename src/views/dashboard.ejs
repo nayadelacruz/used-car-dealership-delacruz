@@ -30,9 +30,19 @@
             </div>
         </div>
         <div class="user-features">
-            <a href="/reviews/myReviews" class="dashboard-link">
-                My Reviews
-            </a>
+            <% if (user.roleName === 'user') { %>
+
+                <a href="/reviews/myReviews" class="dashboard-link">
+                    My Reviews
+                </a>
+
+            <% } else { %>
+
+                <a href="/reviews/all" class="dashboard-link">
+                    View All Reviews
+                </a>
+
+            <% } %>
         </div>
 
         <div class="session-debug">

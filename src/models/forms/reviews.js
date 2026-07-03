@@ -37,7 +37,7 @@ const getReviewsByUserId = async (userId) => {
 };
 
 // get one Review by Id
-const getReviewById = async (reviewId) => {
+const getReviewById = async (reviewId, userID) => {
     const query = `
         SELECT
             review_id,
@@ -51,7 +51,7 @@ const getReviewById = async (reviewId) => {
         AND user_id = $2
     `;
 
-    const result = await db.query(query, [reviewId]);
+    const result = await db.query(query, [reviewId, userID]);
     return result.rows[0];
 };
 
@@ -69,13 +69,14 @@ const editReview = async (reviewId, comment) => {
 };
 
 // delet reiews from de user
-const deleteReview = async (reviewId) => {
+const deleteReview = async (reviewId, userId) => {
     const query = `
         DELETE FROM reviews
         WHERE review_id = $1
+        AND user_id = $2
         RETURNING *
     `;
-    const result = await db.query(query, [reviewId]);
+    const result = await db.query(query, [reviewId, userId]);
     return result.rows[0];
 };
 
@@ -102,11 +103,24 @@ const getAllReviews = async () => {
     return result.rows;
 };
 
+// Delete reviews by moderators
+const deleteReviewByAdmin = async (reviewId) => {
+    const query = `
+        DELETE FROM reviews
+        WHERE review_id = $1
+        RETURNING *
+    `;
+
+    const result = await db.query(query, [reviewId]);
+    return result.rows[0];
+};
+
 export {
     createReview,
     getReviewById,
     getReviewsByUserId,
     editReview,
     deleteReview,
-    getAllReviews
+    getAllReviews,
+    deleteReviewByAdmin
 };

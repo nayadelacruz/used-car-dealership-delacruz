@@ -8,13 +8,13 @@ const requireLogin = (req, res, next) => {
     if (req.session && req.session.user) {
         // User is authenticated - set UI state and continue
         res.locals.isLoggedIn = true;
+        res.locals.user = req.session.user;
         next();
     } else {
         // User is not authenticated - redirect to login
         res.redirect('/login');
     }
-};
-
+};    
 /**
  * Middleware factory to require specific role for route access
  * Returns middleware that checks if user has the required role

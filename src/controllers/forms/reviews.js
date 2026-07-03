@@ -8,7 +8,8 @@ import {
     getReviewsByUserId,
     editReview,
     deleteReview,
-    getAllReviews
+    getAllReviews,
+    deleteReviewByAdmin
 } from '../../models/forms/reviews.js';
 
 const reviewValidation = [
@@ -77,8 +78,12 @@ const showUserReviews = async (req, res) => {
 //user can edit own reviews
 const showEditReviewForm = async (req, res) => {
     try {
+        //const { reviewId } = req.params;
+        //const review = await getReviewById(reviewId);
         const { reviewId } = req.params;
-        const review = await getReviewById(reviewId);
+        const userId = req.session.user.id;
+
+        const review = await getReviewById(reviewId, userId);
 
         res.render('forms/reviews/editReview', {
             title: 'Edit Review',
@@ -118,11 +123,59 @@ const handleReviewEdit = async (req, res) => {
 };
 
 //user can delete own reviews
+const handleDeleteReview = async (req, res) => {
+    try {
+        const { reviewId } = req.params;
+        const userId = req.session.user.id;
+
+        await deleteReview(reviewId, userId);
+
+        req.flash('success', 'Review deleted successfully.');
+        res.redirect('/reviews/myReviews');
+
+    } catch (error) {
+        console.error('Error deleting review:', error);
+        req.flash('error', 'Unable to delete your review.');
+        res.redirect('/reviews/myReviews');
+    }
+};
 
 // employee and admin can see all reviews and can delete them
+const showAllReviews = async (req, res) => {
+    try {
+        const reviews = await getAllReviews();
 
+        res.render('forms/reviews/allReviews', {
+            title: 'Review Moderation',
+            reviews
+        });
+    } catch (error) {
+        console.error('Error loading all reviews:', error);
+        req.flash('error', 'Unable to load reviews.');
+        res.redirect('/dashboard');
+    }
+};
 
-// see all reviews has to be an employee or a manager       
+// delete reviews as employee or manager  
+const handleAdminDeleteReview = async (req, res) => {
+    try {
+        const { reviewId } = req.params;
+
+        const deletedReview = await deleteReviewByAdmin(reviewId);
+
+        if (!deletedReview) {
+            req.flash('error', 'Review not found.');
+            return res.redirect('/reviews/all');
+        }
+
+        req.flash('success', 'Review deleted successfully.');
+        res.redirect('/reviews/all');
+    } catch (error) {
+        console.error('Error deleting review:', error);
+        req.flash('error', 'Unable to delete review.');
+        res.redirect('/reviews/all');
+    }
+};   
 
 export {
     reviewValidation,
@@ -130,5 +183,8 @@ export {
     handleReviewSubmission,
     showUserReviews,
     showEditReviewForm,
-    handleReviewEdit
+    handleReviewEdit,
+    handleDeleteReview,
+    showAllReviews,
+    handleAdminDeleteReview
 };

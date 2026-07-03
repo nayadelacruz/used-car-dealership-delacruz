@@ -9,9 +9,10 @@ import { requireLogin, requireRole } from '../middleware/auth.js';
 import { Router } from 'express';
 import { body } from 'express-validator';
 import { reviewValidation, showReviewForm, handleReviewSubmission, showUserReviews,
-        showEditReviewForm, handleReviewEdits,
-        handleReviewEdit
+        showEditReviewForm, handleReviewEdit, handleDeleteReview, showAllReviews,
+        handleAdminDeleteReview
         } from './forms/reviews.js';
+import { editReview } from '../models/forms/reviews.js';
 
 const router = Router();
 
@@ -74,5 +75,13 @@ router.post(
     requireLogin,
     reviewValidation,
     handleReviewEdit
+);
+router.post('/reviews/delete/:reviewId', requireLogin, handleDeleteReview);
+router.get('/reviews/all', requireRole('employee', 'admin'), showAllReviews);
+router.post('/reviews/admin-delete/:reviewId', requireRole('admin'), handleAdminDeleteReview);
+router.post(
+    '/reviews/admin-delete/:reviewId',
+    requireRole('employee', 'admin'),
+    handleAdminDeleteReview
 );
 export default router;

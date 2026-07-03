@@ -6,12 +6,6 @@
 
         <h1><%= title %></h1>
 
-        <% if (messages && messages.error) { %>
-            <% messages.error.forEach(message => { %>
-                <p class="error-message"><%= message %></p>
-            <% }); %>
-        <% } %>
-
         <form
             class="review-form"
             action="/reviews/edit/<%= review.review_id %>"

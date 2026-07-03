@@ -36,6 +36,25 @@ const getReviewsByUserId = async (userId) => {
     return result.rows;
 };
 
+// get one Review by Id
+const getReviewById = async (reviewId) => {
+    const query = `
+        SELECT
+            review_id,
+            user_id,
+            vehicle_id,
+            comment,
+            created_at,
+            updated_at
+        FROM reviews
+        WHERE review_id = $1
+        AND user_id = $2
+    `;
+
+    const result = await db.query(query, [reviewId]);
+    return result.rows[0];
+};
+
 // get reviews edit from the user
 const editReview = async (reviewId, comment) => {
     const query = `
@@ -85,6 +104,7 @@ const getAllReviews = async () => {
 
 export {
     createReview,
+    getReviewById,
     getReviewsByUserId,
     editReview,
     deleteReview,

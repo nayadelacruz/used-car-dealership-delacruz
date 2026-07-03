@@ -4,6 +4,7 @@ import { Router } from 'express';
 import { body, validationResult } from 'express-validator';
 import {
     createReview,
+    getReviewById,
     getReviewsByUserId,
     editReview,
     deleteReview,
@@ -77,10 +78,11 @@ const showUserReviews = async (req, res) => {
 const showEditReviewForm = async (req, res) => {
     try {
         const { reviewId } = req.params;
+        const review = await getReviewById(reviewId);
 
         res.render('forms/reviews/editReview', {
             title: 'Edit Review',
-            reviewId
+            review
         });
     } catch (error) {
         console.error('Error loading edit review form:', error);

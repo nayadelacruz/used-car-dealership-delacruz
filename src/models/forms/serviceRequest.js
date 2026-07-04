@@ -1,4 +1,4 @@
-import db from '../db.js';
+import db from '../db.js'
 
 //Get service request from the users
 
@@ -43,4 +43,4 @@ const getServiceRequestsByUser = async (userId) => {
 // Update service request status (Submitted, In Progress, Completed) employee and admin
 
 // add notes to service requests employee and admin
-export { createServiceRequest, getServiceRequestsByUser };
+export { createServiceRequest, getServiceRequestsByUser };  

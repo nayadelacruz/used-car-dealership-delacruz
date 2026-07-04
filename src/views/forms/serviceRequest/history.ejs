@@ -1,0 +1,64 @@
+<%- include('../../partials/header') %>
+
+<main class="serviceRequestHistory">
+
+    <h1><%= title %></h1>
+
+    <% if (serviceRequests.length === 0) { %>
+
+        <p>You have not submitted any service requests yet.</p>
+
+        <a href="/serviceRequest" class="dashboard-link">
+            Create New Service Request
+        </a>
+
+    <% } else { %>
+
+        <table class="serviceRequestTable">
+
+            <thead>
+                <tr>
+                    <th>Vehicle</th>
+                    <th>Service Description</th>
+                    <th>Status</th>
+                    <th>Submitted</th>
+                </tr>
+            </thead>
+
+            <tbody>
+
+                <% serviceRequests.forEach(request => { %>
+
+                    <tr>
+                        <td>
+                            <%= request.year %> <%= request.vehicle_make %> <%= request.vehicle_model %> <%= request.vehicle_year %>
+                        </td>
+
+                        <td>
+                            <%= request.service_description %>
+                        </td>
+
+                        <td>
+                            <%= request.status_name %>
+                        </td>
+
+                        <td>
+                            <%= new Date(request.created_at).toLocaleDateString() %>
+                        </td>
+                    </tr>
+
+                <% }); %>
+
+            </tbody>
+
+        </table>
+
+        <a href="/serviceRequest" class="dashboard-link">
+            Create New Service Request
+        </a>
+
+    <% } %>
+
+</main>
+
+<%- include('../../partials/footer') %>

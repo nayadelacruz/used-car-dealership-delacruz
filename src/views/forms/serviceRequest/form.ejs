@@ -1,0 +1,63 @@
+<%- include('../../partials/header') %>
+
+<main>
+    <div class="service-request-form">
+        <h2>Service Request</h2>
+
+        <form action="/serviceRequest" method="POST">
+
+            <div class="form-group">
+                <label for="vehicleMake">Vehicle Make</label>
+                <input
+                    type="text"
+                    id="vehicleMake"
+                    name="vehicleMake"
+                    placeholder="Toyota"
+                    required
+                >
+            </div>
+
+            <div class="form-group">
+                <label for="vehicleModel">Vehicle Model</label>
+                <input
+                    type="text"
+                    id="vehicleModel"
+                    name="vehicleModel"
+                    placeholder="Camry"
+                    required
+                >
+            </div>
+
+            <div class="form-group">
+                <label for="vehicleYear">Vehicle Year</label>
+                <input
+                    type="number"
+                    id="vehicleYear"
+                    name="vehicleYear"
+                    min="1900"
+                    max="2100"
+                    placeholder="2022"
+                    required
+                >
+            </div>
+
+            <div class="form-group">
+                <label for="serviceDescription">Describe the service needed</label>
+                <textarea
+                    id="serviceDescription"
+                    name="serviceDescription"
+                    rows="6"
+                    placeholder="Describe the problem or service you need..."
+                    required
+                ></textarea>
+            </div>
+
+            <button type="submit">
+                Submit Service Request
+            </button>
+
+        </form>
+    </div>
+</main>
+
+<%- include('../../partials/footer') %>

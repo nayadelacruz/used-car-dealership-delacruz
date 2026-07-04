@@ -12,6 +12,7 @@ import { reviewValidation, showReviewForm, handleReviewSubmission, showUserRevie
         showEditReviewForm, handleReviewEdit, handleDeleteReview, showAllReviews,
         handleAdminDeleteReview
         } from './forms/reviews.js';
+import serviceRequestRoutes from './forms/serviceRequest.js';        
 import { editReview } from '../models/forms/reviews.js';
 
 const router = Router();
@@ -39,6 +40,12 @@ router.use('/login', (req, res, next) => {
 // Add login-specific styles to all reviews routes
 router.use('/reviews', (req, res, next) => {
     res.addStyle('<link rel="stylesheet" href="/css/reviews.css">');
+    next();
+});
+
+// Add specific styles to al service requests routes
+router.use('/serviceRequest', (req, res, next) => {
+    res.addStyle('<link rel="stylesheet" href="/css/serviceRequest.css">');
     next();
 });
 //router to home
@@ -84,4 +91,8 @@ router.post(
     requireRole('employee', 'admin'),
     handleAdminDeleteReview
 );
+
+// routes for Service Request
+router.use('/serviceRequest', serviceRequestRoutes);
+
 export default router;

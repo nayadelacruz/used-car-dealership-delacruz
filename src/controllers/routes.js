@@ -48,6 +48,13 @@ router.use('/serviceRequest', (req, res, next) => {
     res.addStyle('<link rel="stylesheet" href="/css/serviceRequest.css">');
     next();
 });
+
+//Add specific styles to dashboard
+router.use('/dashboard', (req, res, next) => {
+    res.addStyle('<link rel="stylesheet" href="/css/dashboard.css">');
+    next();
+});
+
 //router to home
 router.get('/', renderHome);
 

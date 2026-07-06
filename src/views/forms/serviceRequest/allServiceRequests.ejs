@@ -1,0 +1,80 @@
+<%- include('../../partials/header') %>
+
+<main class="serviceRequestHistory">
+
+    <h1><%= title %></h1>
+
+    <% if (serviceRequests.length === 0) { %>
+
+        <p>There are currently no service requests.</p>
+
+    <% } else { %>
+
+        <table class="serviceRequestTable">
+
+            <thead>
+                <tr>
+                    <th>Customer</th>
+                    <th>Vehicle</th>
+                    <th>Service Description</th>
+                    <th>Status</th>
+                    <th>Submitted</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+
+            <tbody>
+
+                <% serviceRequests.forEach(request => { %>
+
+                    <tr>
+
+                        <td data-label="Customer">
+                            <%= request.user_name %>
+                        </td>
+
+                        <td data-label="Vehicle">
+                            <%= request.vehicle_make %>
+                            <%= request.vehicle_model %>
+                            <%= request.vehicle_year %>
+                        </td>
+
+                        <td data-label="Service Description">
+                            <%= request.service_description %>
+                        </td>
+
+                        <td data-label="Status">
+                            <span class="status-<%= request.status_name.toLowerCase().replace(/\s+/g, '-') %>">
+                                <%= request.status_name %>
+                            </span>
+                        </td>
+
+                        <td data-label="Submitted">
+                            <%= new Date(request.created_at).toLocaleDateString() %>
+                        </td>
+
+                        <td data-label="Actions">
+
+                            <a
+                                href="/serviceRequest/<%= request.id%>/manage"
+                                class="bottonEdit">
+
+                                Manage
+
+                            </a>
+
+                        </td>
+
+                    </tr>
+
+                <% }); %>
+
+            </tbody>
+
+        </table>
+
+    <% } %>
+
+</main>
+
+<%- include('../../partials/footer') %>

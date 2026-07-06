@@ -1,0 +1,159 @@
+<%- include('../../partials/header') %>
+
+<main class="manage-service-request">
+
+    <h1>Manage Service Request</h1>
+
+    <section class="request-details">
+
+        <h2>Request Information</h2>
+
+        <div class="detail">
+            <h3>Customer</h3>
+            <p><%= serviceRequest.user_name %></p>
+        </div>
+
+        <div class="detail">
+            <h3>Email</h3>
+            <p><%= serviceRequest.user_email %></p>
+        </div>
+
+        <div class="detail">
+            <h3>Vehicle</h3>
+            <p>
+                <%= serviceRequest.vehicle_year %>
+                <%= serviceRequest.vehicle_make %>
+                <%= serviceRequest.vehicle_model %>
+            </p>
+        </div>
+
+        <div class="detail">
+            <h3>Description</h3>
+            <p><%= serviceRequest.service_description %></p>
+        </div>
+
+        <div class="detail">
+            <h3>Current Status</h3>
+            <p><strong><%= serviceRequest.status_name %></strong></p>
+        </div>
+
+        <div class="detail">
+            <h3>Submitted</h3>
+            <p><%= serviceRequest.created_at.toLocaleString() %></p>
+        </div>
+
+    </section>
+
+
+    <section class="status-update">
+
+        <h2>Update Status</h2>
+
+        <form
+            action="/serviceRequest/<%= serviceRequest.id %>/status"
+            method="POST"
+        >
+
+            <div class="form-group">
+
+                <label for="statusId">Status</label>
+
+                <select
+                    id="statusId"
+                    name="statusId"
+                >
+
+                    <% statuses.forEach(status => { %>
+
+                        <option
+                            value="<%= status.id %>"
+                            <%= status.id === serviceRequest.status_id ? 'selected' : '' %>
+                        >
+                            <%= status.status_name %>
+                        </option>
+
+                    <% }) %>
+
+                </select>
+
+            </div>
+
+            <button type="submit">
+                Update Status
+            </button>
+
+        </form>
+
+    </section>
+
+
+    <section class="request-notes">
+
+        <h2>Employee Notes</h2>
+
+        <% if (notes.length === 0) { %>
+
+            <p>No notes have been added yet.</p>
+
+        <% } else { %>
+
+            <% notes.forEach(note => { %>
+
+                <div class="note-card">
+
+                    <p class="note-text">
+                        <%= note.note %>
+                    </p>
+
+                    <p class="note-author">
+                        Added by <strong><%= note.employee_name %></strong>
+                    </p>
+
+                    <p class="note-date">
+                        <%= note.created_at.toLocaleString() %>
+                    </p>
+
+                </div>
+
+            <% }) %>
+
+        <% } %>
+
+    </section>
+
+
+    <section class="add-note">
+
+        <h2>Add Note</h2>
+
+        <form
+            action="/serviceRequest/<%= serviceRequest.id %>/notes"
+            method="POST"
+        >
+
+            <div class="form-group">
+
+                <label for="note">
+                    Employee Note
+                </label>
+
+                <textarea
+                    id="note"
+                    name="note"
+                    rows="5"
+                    required
+                ></textarea>
+
+            </div>
+
+            <button type="submit">
+                Add Note
+            </button>
+
+        </form>
+
+    </section>
+
+</main>
+
+<%- include('../../partials/footer') %>

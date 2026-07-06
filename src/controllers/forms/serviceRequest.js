@@ -1,9 +1,15 @@
 import { Router } from 'express';
 import { body, validationResult } from 'express-validator';
-import { requireLogin } from '../../middleware/auth.js';
+import { requireLogin, requireRole } from '../../middleware/auth.js';
 import {
     createServiceRequest,
-    getServiceRequestsByUser
+    getServiceRequestsByUser,
+    getAllServiceRequests,
+    getServiceRequestById,
+    getAllStatuses,
+    updateServiceRequestStatus,
+    addServiceRequestNote,
+    getServiceRequestNotes
 } from '../../models/forms/serviceRequest.js';
 
 const router = Router();
@@ -98,5 +104,113 @@ router.post(
 );
 
 router.get('/history', requireLogin, showServiceRequestHistory);
+
+/**
+ * Display all service requests.
+ * Employees and admins only.
+ */
+const showAllServiceRequests = async (req, res) => {
+    try {
+
+        const serviceRequests = await getAllServiceRequests();
+
+        res.render('forms/serviceRequest/allServiceRequests', {
+            title: 'Service Requests',
+            serviceRequests
+        });
+
+    } catch (error) {
+        console.error('Error retrieving service requests:', error);
+
+        req.flash('error', 'Unable to retrieve service requests.');
+        res.redirect('/dashboard');
+    }
+};
+
+router.get(
+    '/allHistory',
+    requireRole('employee', 'admin'),
+    showAllServiceRequests
+);
+
+const showManageServiceRequest = async (req, res) => {
+    try {
+        const requestId = req.params.id;
+
+        const serviceRequest = await getServiceRequestById(requestId);
+        const statuses = await getAllStatuses();
+        const notes = await getServiceRequestNotes(requestId);
+
+        if (!serviceRequest) {
+            req.flash('error', 'Service request not found.');
+            return res.redirect('/serviceRequest/list');
+        }
+
+        res.render('forms/serviceRequest/manage', {
+            title: 'Manage Service Request',
+            serviceRequest,
+            statuses,
+            notes
+        });
+
+    } catch (error) {
+        console.error('Error loading service request:', error);
+        req.flash('error', 'Unable to load service request.');
+        res.redirect('/serviceRequest/list');
+    }
+};
+
+const handleStatusUpdate = async (req, res) => {
+    try {
+        const requestId = req.params.id;
+        const { statusId } = req.body;
+
+        await updateServiceRequestStatus(requestId, statusId);
+
+        req.flash('success', 'Service request status updated.');
+        res.redirect(`/serviceRequest/${requestId}/manage`);
+
+    } catch (error) {
+        console.error('Error updating service request status:', error);
+        req.flash('error', 'Unable to update status.');
+        res.redirect('/serviceRequest/list');
+    }
+};
+
+const handleAddServiceRequestNote = async (req, res) => {
+    try {
+        const requestId = req.params.id;
+        const employeeId = req.session.user.id;
+        const { note } = req.body;
+
+        await addServiceRequestNote(requestId, employeeId, note);
+
+        req.flash('success', 'Note added successfully.');
+        res.redirect(`/serviceRequest/${requestId}/manage`);
+
+    } catch (error) {
+        console.error('Error adding service request note:', error);
+        req.flash('error', 'Unable to add note.');
+        res.redirect('/serviceRequest/list');
+    }
+};
+
+router.get(
+    '/:id/manage',
+    requireRole('employee', 'admin'),
+    showManageServiceRequest
+);
+
+router.post(
+    '/:id/status',
+    requireRole('employee', 'admin'),
+    handleStatusUpdate
+);
+
+router.post(
+    '/:id/notes',
+    requireRole('employee', 'admin'),
+    handleAddServiceRequestNote
+);
 
 export default router;

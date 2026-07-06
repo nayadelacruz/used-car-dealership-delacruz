@@ -222,3 +222,282 @@
         text-align: center;
     }
 }
+
+/* ===========================
+   All Service Requests
+=========================== */
+
+.serviceRequestHistory {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 2rem;
+
+    h1 {
+        text-align: center;
+        margin-bottom: 2rem;
+        color: #222;
+    }
+
+    p {
+        text-align: center;
+        font-size: 1.1rem;
+        color: #555;
+    }
+}
+
+.serviceRequestTable {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 2rem;
+    background-color: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+
+    th,
+    td {
+        padding: 1rem;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+        vertical-align: top;
+    }
+
+    th {
+        background-color: #222;
+        color: white;
+    }
+
+    tbody {
+
+        tr:hover {
+            background-color: #f8f8f8;
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+    }
+}
+
+.bottonEdit {
+    display: inline-block;
+    padding: 0.6rem 1rem;
+    background-color: #0077cc;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background-color 0.2s ease;
+
+    &:hover {
+        background-color: #005fa3;
+    }
+}
+
+/* Status badges */
+
+.status-submitted {
+    color: #d97706;
+    font-weight: bold;
+}
+
+.status-in-progress {
+    color: #2563eb;
+    font-weight: bold;
+}
+
+.status-completed {
+    color: #15803d;
+    font-weight: bold;
+}
+
+/* ===========================
+   Responsive
+=========================== */
+
+@media (max-width: 768px) {
+
+    .serviceRequestHistory {
+        padding: 1rem;
+    }
+
+    .serviceRequestTable {
+
+        thead {
+            display: none;
+        }
+
+        tbody,
+        tr,
+        td {
+            display: block;
+            width: 100%;
+        }
+
+        tr {
+            margin-bottom: 1rem;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 1rem;
+        }
+
+        td {
+            border: none;
+            padding: 0.5rem 0;
+
+            &::before {
+                content: attr(data-label);
+                display: block;
+                font-weight: bold;
+                margin-bottom: 0.25rem;
+            }
+        }
+    }
+
+    .bottonEdit {
+        width: 100%;
+        text-align: center;
+        box-sizing: border-box;
+    }
+}
+
+/* ------MANAGE SERVICE REQUESTS----- */
+/* Manage Service Request */
+
+.manage-service-request {
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 20px;
+    background-color: #f8f9fb;
+
+    h1 {
+        text-align: center;
+        color: #333;
+        margin-bottom: 40px;
+    }
+
+    section {
+        background-color: white;
+        padding: 25px;
+        margin-bottom: 30px;
+        border-radius: 12px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+
+        h2 {
+            color: #65aeeb;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #65aeeb;
+            padding-bottom: 10px;
+        }
+    }
+
+    .detail {
+        display: flex;
+        align-items: flex-start;
+        margin-bottom: 18px;
+
+        h3 {
+            width: 180px;
+            margin: 0;
+            color: #333;
+            font-size: 1rem;
+        }
+
+        p {
+            flex: 1;
+            margin: 0;
+            color: #666;
+            line-height: 1.5;
+        }
+    }
+
+    .form-group {
+        margin-bottom: 20px;
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #333;
+            font-weight: bold;
+        }
+
+        select,
+        textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #d9d9d9;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-family: inherit;
+            box-sizing: border-box;
+
+            &:focus {
+                outline: none;
+                border-color: #65aeeb;
+            }
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+    }
+
+    button {
+        padding: 12px 28px;
+        border: none;
+        border-radius: 8px;
+        background-color: #65aeeb;
+        color: white;
+        font-size: 1rem;
+        font-weight: bold;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+
+        &:hover {
+            background-color: #2756ba;
+        }
+    }
+
+    .note-card {
+        border-left: 5px solid #65aeeb;
+        background-color: #f9f9f9;
+        padding: 18px;
+        margin-bottom: 18px;
+        border-radius: 8px;
+
+        .note-text {
+            color: #333;
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+
+        .note-author,
+        .note-date {
+            color: #777;
+            font-size: 0.9rem;
+            margin: 4px 0;
+        }
+    }
+}
+
+@media (max-width: 768px) {
+
+    .manage-service-request {
+
+        padding: 15px;
+
+        .detail {
+            flex-direction: column;
+
+            h3 {
+                width: auto;
+                margin-bottom: 6px;
+            }
+        }
+
+        button {
+            width: 100%;
+        }
+    }
+}

@@ -74,4 +74,32 @@ const getVehicleImages = async (vehicleId) => {
     return result.rows;
 };
 
-export { getListOfVehicles, getByCategory, getCategories, getVehicleById, getVehicleImages };
+// MODELS FOR EMPLOYEES AND ADMINS FEATURES
+
+const updateVehicleDetails = async (
+    vehicleId,
+    price,
+    description,
+    availability
+) => {
+    const query = `
+        UPDATE vehicles_details
+        SET
+            price = $2,
+            description = $3,
+            availability = $4
+        WHERE vehicle_id = $1
+        RETURNING *
+    `;
+
+    const result = await db.query(query, [
+        vehicleId,
+        price,
+        description,
+        availability
+    ]);
+
+    return result.rows[0];
+};
+
+export { getListOfVehicles, getByCategory, getCategories, getVehicleById, getVehicleImages, updateVehicleDetails };

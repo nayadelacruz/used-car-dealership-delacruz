@@ -1,4 +1,4 @@
-import { getListOfVehicles, getByCategory, getCategories, getVehicleById, getVehicleImages } from "../../models/vehicles/list.js";
+import { getListOfVehicles, getByCategory, getCategories, getVehicleById, getVehicleImages, updateVehicleDetails } from "../../models/vehicles/list.js";
 
 const vehicleListPage = async (req, res, next) => {
     try {
@@ -39,4 +39,62 @@ const displayVehicleDetails = async (req, res, next) => {
     });
 };
 
-export { vehicleListPage, displayVehicleDetails};
+// FEATURES FOR EMPLOYEES AND ADMINS 
+
+const showEditVehicleForm = async (req, res) => {
+    try {
+        const vehicleId = req.params.id;
+
+        const vehicle = await getVehicleById(vehicleId);
+
+        if (!vehicle) {
+            req.flash('error', 'Vehicle not found.');
+            return res.redirect('/vehicles');
+        }
+
+        res.render('vehicles/editVehicle', {
+            title: 'Edit Vehicle',
+            vehicle
+        });
+
+    } catch (error) {
+        console.error('Error loading vehicle:', error);
+        req.flash('error', 'Unable to load vehicle.');
+        res.redirect('/vehicles');
+    }
+};
+
+const handleEditVehicleSubmission = async (req, res) => {
+    try {
+        const vehicleId = req.params.id;
+
+        const {
+            price,
+            description,
+            availability
+        } = req.body;
+
+        await updateVehicleDetails(
+            vehicleId,
+            price,
+            description,
+            availability === 'true'
+        );
+
+        req.flash('success', 'Vehicle updated successfully.');
+        res.redirect(`/vehicles/${vehicleId}`);
+
+    } catch (error) {
+        console.error('Error updating vehicle:', error);
+        req.flash('error', 'Unable to update vehicle.');
+        res.redirect(`/vehicles/${req.params.id}/edit`);
+    }
+};
+
+export {
+    showEditVehicleForm,
+    handleEditVehicleSubmission
+};
+
+export { vehicleListPage, displayVehicleDetails, 
+        showEditVehicleForm, handleEditVehicleSubmission};

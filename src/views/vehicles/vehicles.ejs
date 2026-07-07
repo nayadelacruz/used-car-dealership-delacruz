@@ -27,6 +27,18 @@
                     <p class="category"><%= vehicle.category_name %></p>
                     <p class="transmission"><%= vehicle.transmission %></p>
                     <a href="/vehicles/<%= vehicle.vehicle_id %>">Details</a>
+                     <% if (
+                        isLoggedIn &&
+                        (user.roleName === 'employee' || user.roleName === 'admin')
+                    ) { %>
+
+                        <a
+                            href="/vehicles/<%= vehicle.vehicle_id %>/edit"
+                            class="buttonEdit">
+                            Edit
+                        </a>
+
+                    <% } %>
                 </div>
             <% }); %>
     </div>

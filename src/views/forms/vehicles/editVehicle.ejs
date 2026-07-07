@@ -1,0 +1,105 @@
+<%- include('../../partials/header') %>
+
+<main>
+
+    <section class="edit-vehicle-form">
+
+        <h1>Edit Vehicle</h1>
+
+        <p>
+            Editing:
+            <strong>
+                <%= vehicle.year %>
+                <%= vehicle.make %>
+                <%= vehicle.model %>
+            </strong>
+        </p>
+
+        <form
+            action="/vehicles/<%= vehicle.vehicle_id %>/edit"
+            method="POST"
+        >
+
+            <div class="form-group">
+
+                <label for="price">
+                    Price
+                </label>
+
+                <input
+                    type="number"
+                    id="price"
+                    name="price"
+                    step="0.01"
+                    min="0"
+                    value="<%= vehicle.price %>"
+                    required
+                >
+
+            </div>
+
+            <div class="form-group">
+
+                <label for="description">
+                    Description
+                </label>
+
+                <textarea
+                    id="description"
+                    name="description"
+                    rows="6"
+                    required
+                ><%= vehicle.description %></textarea>
+
+            </div>
+
+            <div class="form-group">
+
+                <label for="availability">
+                    Availability
+                </label>
+
+                <select
+                    id="availability"
+                    name="availability"
+                    required
+                >
+
+                    <option
+                        value="true"
+                        <%= vehicle.availability ? 'selected' : '' %>>
+                        Available
+                    </option>
+
+                    <option
+                        value="false"
+                        <%= !vehicle.availability ? 'selected' : '' %>>
+                        Not Available
+                    </option>
+
+                </select>
+
+            </div>
+
+            <div class="button-group">
+
+                <button type="submit">
+                    Save Changes
+                </button>
+
+                <a
+                    href="/vehicles"
+                    class="buttonCancel"
+                >
+                    Cancel
+                </a>
+
+            </div>
+
+        </form>
+
+    </section>
+
+</main>
+
+<%- include('../../partials/footer') %>

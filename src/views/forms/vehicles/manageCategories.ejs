@@ -1,0 +1,33 @@
+<%- include('../../partials/header') %>
+
+<main class="manage-categories">
+    <h1><%= title %></h1>
+
+    <a href="/categories/new" class="buttonAdd">Add New Category</a>
+
+    <div class="categories-list">
+        <% categories.forEach(category => { %>
+            <div class="category-card">
+                <h2><%= category.name %></h2>
+
+                <div class="category-actions">
+                    <a
+                        href="/categories/<%= category.category_id %>/edit"
+                        class="buttonEdit">
+                        Edit
+                    </a>
+
+                    <form
+                        action="/categories/<%= category.category_id %>/delete"
+                        method="POST">
+                        <button type="submit" class="buttonDelete">
+                            Delete
+                        </button>
+                    </form>
+                </div>
+            </div>
+        <% }); %>
+    </div>
+</main>
+
+<%- include('../../partials/footer') %>

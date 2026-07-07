@@ -1,6 +1,6 @@
 import express from 'express';
 import { renderHome } from './featuredVehicles/featuredVehicles.js';
-import { vehicleListPage, displayVehicleDetails } from './vehicles/vehicles.js';
+import { vehicleListPage, displayVehicleDetails, showEditVehicleForm, handleEditVehicleSubmission } from './vehicles/vehicles.js';
 import contactRoutes from './forms/contactForm.js';
 import registrationRoutes from './forms/registration.js';
 import loginRoutes from './forms/login.js';
@@ -14,7 +14,7 @@ import { reviewValidation, showReviewForm, handleReviewSubmission, showUserRevie
         } from './forms/reviews.js';
 import serviceRequestRoutes from './forms/serviceRequest.js';        
 import { editReview } from '../models/forms/reviews.js';
-
+import categoryRoutes from './forms/categories.js';
 const router = Router();
 
 router.use('/vehicles', (req, res, next) => {
@@ -60,6 +60,17 @@ router.get('/', renderHome);
 
 router.get('/vehicles', vehicleListPage);
 router.get('/vehicles/:vehicleId', displayVehicleDetails);
+router.get(
+    '/vehicles/:id/edit',
+    requireRole('employee', 'admin'),
+    showEditVehicleForm
+);
+
+router.post(
+    '/vehicles/:id/edit',
+    requireRole('employee', 'admin'),
+    handleEditVehicleSubmission
+);
 
 // Contact form routes
 router.use('/contactForm', contactRoutes);
@@ -101,5 +112,8 @@ router.post(
 
 // routes for Service Request
 router.use('/serviceRequest', serviceRequestRoutes);
+
+// routes manage categories by admin
+router.use('/categories', categoryRoutes);
 
 export default router;

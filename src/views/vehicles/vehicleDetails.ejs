@@ -19,6 +19,19 @@
         <p><%= vehicle.year %></p> 
     </div> 
     <div class="detail">
+        <h3 class="detailName">DESCRIPTION</h3>
+        <p><%= vehicle.description %></p> 
+    </div> 
+    <div class="detail">
+        <h3 class="detailName">AVAILABILITY</h3>
+
+        <% if (vehicle.availability) { %>
+            <p>In Stock</p>
+        <% } else { %>
+            <p>Out of Stock</p>
+        <% } %>
+    </div>
+    <div class="detail">
         <h3 class="detailName">PRICE</h3>
         <p>$<%= vehicle.price %></p> 
     </div> 
@@ -53,6 +66,14 @@
     <div class="detail">
         <h3 class="detailName">INTERIOR COLOR</h3>
         <p><%= vehicle.interior_color %></p> 
+    </div> 
+     <div class="detail">
+        <h3 class="detailName">VIN</h3>
+        <p><%= vehicle.vin %></p> 
+    </div> 
+     <div class="detail">
+        <h3 class="detailName">STOCK NUMBER</h3>
+        <p><%= vehicle.stock_number %></p> 
     </div> 
     <div class="reviewButtonContainer">
         <a href="/reviews/new/<%= vehicle.vehicle_id %>" class="reviewBtn">

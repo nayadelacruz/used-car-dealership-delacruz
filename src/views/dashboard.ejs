@@ -1,63 +1,87 @@
 <%- include('partials/header') %>
+
 <main>
     <div class="dashboard">
         <h1>Welcome to Your Dashboard</h1>
+
         <p>
             This is a protected page that requires authentication. Only logged-in users can access this content.
         </p>
 
-        <div class="user-info">
+        <section class="user-info">
             <h2>Your Account Information</h2>
-            <!-- TODO: Display user.name in a div with class="user-detail" -->
-            <!-- TODO: Use span with class="label" for "Name:" and span with class="value" for the actual name -->
-            <!-- TODO: Display user.email in the same format -->
-            <!-- TODO: Display user.created_at formatted with toLocaleDateString() -->
+
             <div class="user-detail">
                 <span class="label">Name:</span>
                 <span class="value"><%= user.name %></span>
-            </div> 
+            </div>
+
             <div class="user-detail">
                 <span class="label">Email:</span>
                 <span class="value"><%= user.email %></span>
             </div>
+
             <div class="user-detail">
                 <span class="label">Role:</span>
                 <span class="value"><%= user.roleName %></span>
             </div>
+
             <div class="user-detail">
                 <span class="label">Created At:</span>
                 <span class="value"><%= new Date(user.created_at).toLocaleDateString() %></span>
             </div>
-        </div>
-        <div class="user-features">
-            <% if (user.roleName === 'user') { %>
+        </section>
 
-                <a href="/reviews/myReviews" class="dashboard-link">
-                    My Reviews
-                </a>
-                <a href="/serviceRequest" class="dashboard-link">
-                    Create New Service Request
-                </a>
-                <a href="/serviceRequest/history" class="dashboard-link">
-                    Service Request History
-                </a>
+        <section class="dashboard-section">
+            <h2>Dashboard Actions</h2>
 
-            <% } else { %>
+            <div class="dashboard-links">
+                <% if (user.roleName === 'user') { %>
 
-                <a href="/reviews/all" class="dashboard-link">
-                    View All Reviews
-                </a>
-                <a href="/serviceRequest/allHistory" class="dashboard-link">
-                    View All Service Requests
-                </a>
-                <a href="/vehicles"class="dashboard-link">Vehicles</a>
+                    <a href="/reviews/myReviews" class="dashboard-link">
+                        My Reviews
+                    </a>
 
-            <% } %>
-        </div>
+                    <a href="/serviceRequest" class="dashboard-link">
+                        Create New Service Request
+                    </a>
+
+                    <a href="/serviceRequest/history" class="dashboard-link">
+                        Service Request History
+                    </a>
+
+                <% } else { %>
+
+                    <a href="/reviews/all" class="dashboard-link">
+                        View All Reviews
+                    </a>
+
+                    <a href="/serviceRequest/allHistory" class="dashboard-link">
+                        View All Service Requests
+                    </a>
+
+                    <a href="/vehicles" class="dashboard-link">
+                        Manage Vehicles
+                    </a>
+
+                    <% if (user.roleName === 'admin') { %>
+                        <a href="/categories/manage" class="dashboard-link">
+                            Manage Vehicle Categories
+                        </a>
+                        <a href="/vehicles/new" class="dashboard-link">
+                            Add New Vehicle
+                        </a>
+                        
+                    <% } %>
+
+                <% } %>
+            </div>
+        </section>
 
         <div class="dashboard-actions">
             <a href="/logout" class="logout-button">Logout</a>
         </div>
     </div>
 </main>
+
 <%- include('partials/footer') %>

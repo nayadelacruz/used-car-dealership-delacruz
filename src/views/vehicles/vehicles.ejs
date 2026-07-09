@@ -27,17 +27,33 @@
                     <p class="category"><%= vehicle.category_name %></p>
                     <p class="transmission"><%= vehicle.transmission %></p>
                     <a href="/vehicles/<%= vehicle.vehicle_id %>">Details</a>
-                     <% if (
-                        isLoggedIn &&
-                        (user.roleName === 'employee' || user.roleName === 'admin')
-                    ) { %>
 
+                    <% if (isLoggedIn && (user.roleName === 'employee' || user.roleName === 'admin')) { %>
                         <a
                             href="/vehicles/<%= vehicle.vehicle_id %>/edit"
                             class="buttonEdit">
-                            Edit
+                            Edit Details
+                        </a>
+                    <% } %>
+
+                    <% if (isLoggedIn && user.roleName === 'admin') { %>
+                        <a
+                            href="/vehicles/<%= vehicle.vehicle_id %>/adminEdit"
+                            class="buttonEdit">
+                            Full Edit
                         </a>
 
+                        <form
+                            action="/vehicles/<%= vehicle.vehicle_id %>/delete"
+                            method="POST"
+                            class="deleteForm">
+                            <button
+                                type="submit"
+                                class="buttonDelete"
+                                onclick="return confirm('Are you sure you want to delete this vehicle?');">
+                                Delete
+                            </button>
+                        </form>
                     <% } %>
                 </div>
             <% }); %>

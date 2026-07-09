@@ -13,8 +13,10 @@ import { reviewValidation, showReviewForm, handleReviewSubmission, showUserRevie
         handleAdminDeleteReview
         } from './forms/reviews.js';
 import serviceRequestRoutes from './forms/serviceRequest.js';        
-import { editReview } from '../models/forms/reviews.js';
-import categoryRoutes from './forms/categories.js';
+//import { editReview } from '../models/forms/reviews.js';
+import categoryRoutes from './vehicles/manageVehicleCategories.js';
+import manageVehicleRoutes from './vehicles/manageVehicles.js';
+import newVehiclesRoutes from './vehicles/newVehicle.js';
 const router = Router();
 
 router.use('/vehicles', (req, res, next) => {
@@ -55,10 +57,20 @@ router.use('/dashboard', (req, res, next) => {
     next();
 });
 
+// Add specific style for Manage Categories Features
+router.use('/categories', (req, res, next) => {
+    res.addStyle('<link rel="stylesheet" href="/css/manageCategories.css">');
+    next();
+});
+
 //router to home
 router.get('/', renderHome);
 
 router.get('/vehicles', vehicleListPage);
+// routes manage edith vehicles by Admin
+router.use('/vehicles', manageVehicleRoutes);
+// routes manage add new vehicle by admin
+router.use('/vehicles', newVehiclesRoutes);
 router.get('/vehicles/:vehicleId', displayVehicleDetails);
 router.get(
     '/vehicles/:id/edit',
@@ -115,5 +127,7 @@ router.use('/serviceRequest', serviceRequestRoutes);
 
 // routes manage categories by admin
 router.use('/categories', categoryRoutes);
+
+
 
 export default router;

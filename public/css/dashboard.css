@@ -64,8 +64,10 @@
 }
 
 .dashboard-link {
-    display: inline-block;
+    display: flex;
+    flex-direction: column;
     padding: 0.9rem 1.5rem;
+    margin: 5px;
     background-color: #0077cc;
     color: white;
     text-decoration: none;

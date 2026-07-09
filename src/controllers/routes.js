@@ -115,12 +115,7 @@ router.post(
 );
 router.post('/reviews/delete/:reviewId', requireLogin, handleDeleteReview);
 router.get('/reviews/all', requireRole('employee', 'admin'), showAllReviews);
-router.post('/reviews/admin-delete/:reviewId', requireRole('admin'), handleAdminDeleteReview);
-router.post(
-    '/reviews/admin-delete/:reviewId',
-    requireRole('employee', 'admin'),
-    handleAdminDeleteReview
-);
+router.post('/reviews/admin-delete/:reviewId', requireRole('employee', 'admin'), handleAdminDeleteReview);
 
 // routes for Service Request
 router.use('/serviceRequest', serviceRequestRoutes);

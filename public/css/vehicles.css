@@ -64,6 +64,7 @@
     display: flex;
     flex-direction: column;
     transition: transform 0.3s ease;
+    
 }
 
 .cardPerVehicleList img {
@@ -401,6 +402,9 @@ main .detail:last-of-type {
             min-height: 140px;
         }
     }
+
+    
+    
 
     /* Description spans the entire form width */
 

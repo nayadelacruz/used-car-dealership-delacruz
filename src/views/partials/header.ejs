@@ -27,30 +27,37 @@
 <body>
     <header>
         <div class="logo">
-            <img src="/images/logo1.png" alt="logo De la cruz Autosales">
+            <img src="/images/logo1.png" alt="De la Cruz Auto Sales Logo">
         </div>
-        <div class="navegation">
+
+        <div class="navigation">
             <nav>
                 <ul>
                     <li><a href="/">Home</a></li>
                     <li><a href="/vehicles">Vehicles</a></li>
                     <li><a href="/contactForm">Contact</a></li>
+
+                    <% if (isLoggedIn) { %>
+                        <li><a href="/dashboard">Dashboard</a></li>
+                    <% } %>
                 </ul>
             </nav>
-        </div> 
-        <!-- Only visible when logged in -->
-        <% if (isLoggedIn) { %>
-            <li><a href="/dashboard">Dashboard</a></li>
+        </div>
 
-            <li><a href="/logout">Logout</a></li>
-        <% } %>
-        <!-- Only visible when NOT logged in -->
-        <% if (!isLoggedIn) { %>
-            <div class="registration">
-                <a href="/login">LOGIN</a>
-                <a href="/register">REGISTER</a>
-            </div>
-        <% } %>
+        <div class="account-links">
+
+            <% if (isLoggedIn) { %>
+
+                <a href="/logout">Logout</a>
+
+            <% } else { %>
+
+                <a href="/login">Login</a>
+                <a href="/register">Register</a>
+
+            <% } %>
+
+        </div>
 
         <% 
             const messages = flash();

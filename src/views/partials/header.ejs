@@ -42,11 +42,6 @@
         <% if (isLoggedIn) { %>
             <li><a href="/dashboard">Dashboard</a></li>
 
-            <% if (typeof user !== 'undefined' && user && (user.roleName === 'employee' || user.roleName === 'admin')) { %>
-                <li><a href="/register/list">All Users</a></li>
-                <li><a href="/contactForm/responses">Contact Responses</a></li>
-            <% } %>
-
             <li><a href="/logout">Logout</a></li>
         <% } %>
         <!-- Only visible when NOT logged in -->

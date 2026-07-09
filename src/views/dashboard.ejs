@@ -64,12 +64,19 @@
                         Manage Vehicles
                     </a>
 
+                    <a href="/contactForm/responses" class="dashboard-link">
+                        View Contact Form Submissions
+                    </a>
+
                     <% if (user.roleName === 'admin') { %>
                         <a href="/categories/manage" class="dashboard-link">
                             Manage Vehicle Categories
                         </a>
                         <a href="/vehicles/new" class="dashboard-link">
                             Add New Vehicle
+                        </a>
+                        <a href="/register/list" class="dashboard-link">
+                            Manage Users
                         </a>
                         
                     <% } %>

@@ -206,103 +206,163 @@ INSERT INTO vehicle_images
 VALUES
 
 -- Toyota Camry
-('/images/vehicles/toyota-camry-front.jpg',1,'Toyota Camry Front View',TRUE),
-('/images/vehicles/toyota-camry-side.jpg',1,'Toyota Camry Side View',FALSE),
-('/images/vehicles/toyota-camry-interior.jpg',1,'Toyota Camry Interior',FALSE),
+('https://images.unsplash.com/photo-1664287721774-13da4b108b18?ixid=M3w4MjcwNjd8MHwxfHNlYXJjaHwxfHxyZWQlMjB0b3lvdGElMjBjYW1yeXxlbnwwfHx8fDE3ODM2MjU1Mzd8MA&ixlib=rb-4.1.0&w=100&fit=max&q=80',
+    1,'Toyota Camry Front View',TRUE),
+('https://images.unsplash.com/photo-1664287721774-13da4b108b18?ixid=M3w4MjcwNjd8MHwxfHNlYXJjaHwxfHxyZWQlMjB0b3lvdGElMjBjYW1yeXxlbnwwfHx8fDE3ODM2MjU1Mzd8MA&ixlib=rb-4.1.0&w=100&fit=max&q=80',
+    1,'Toyota Camry Side View',FALSE),
+('https://images.unsplash.com/photo-1652675389931-513389f4f603?ixid=M3w4MjcwNjd8MHwxfHNlYXJjaHwzfHxyZWQlMjB0b3lvdGElMjBjYW1yeXxlbnwwfHx8fDE3ODM2MjU1Mzd8MA&ixlib=rb-4.1.0&w=100&fit=max&q=80',
+    1,'Toyota Camry Interior',FALSE),
 
 -- Honda Accord
-('/images/vehicles/honda-accord-front.jpg',2,'Honda Accord Front View',TRUE),
-('/images/vehicles/honda-accord-side.jpg',2,'Honda Accord Side View',FALSE),
-('/images/vehicles/honda-accord-interior.jpg',2,'Honda Accord Interior',FALSE),
+('https://images.unsplash.com/photo-1594070319944-7c0cbebb6f58?ixid=M3w4MjcwNjd8MHwxfHNlYXJjaHwxfHxob25kYSUyMGFjY29yZHxlbnwwfHx8fDE3ODM2MjU2Njh8MA&ixlib=rb-4.1.0&w=100&fit=max&q=80',
+    2,'Honda Accord Front View',TRUE),
+('https://images.unsplash.com/photo-1634737581963-5a22ba471961?ixid=M3w4MjcwNjd8MHwxfHNlYXJjaHwyfHxob25kYSUyMGFjY29yZHxlbnwwfHx8fDE3ODM2MjU2Njh8MA&ixlib=rb-4.1.0&w=100&fit=max&q=80',
+    2,'Honda Accord Side View',FALSE),
+('https://images.unsplash.com/photo-1578659258511-4a4e7dee7344?ixid=M3w4MjcwNjd8MHwxfHNlYXJjaHwzfHxob25kYSUyMGFjY29yZHxlbnwwfHx8fDE3ODM2MjU2Njh8MA&ixlib=rb-4.1.0&w=100&fit=max&q=80',
+    2,'Honda Accord Interior',FALSE),
 
 -- Mazda3
-('/images/vehicles/mazda3-front.jpg',3,'Mazda3 Front View',TRUE),
-('/images/vehicles/mazda3-side.jpg',3,'Mazda3 Side View',FALSE),
-('/images/vehicles/mazda3-interior.jpg',3,'Mazda3 Interior',FALSE),
+('https://images.unsplash.com/photo-1599491143816-8c1ea12a4e06?ixid=M3w4MjcwNjd8MHwxfHNlYXJjaHwxfHxtYXpkYSUyMDN8ZW58MHx8fHwxNzgzNjI1NzYyfDA&ixlib=rb-4.1.0&w=100&fit=max&q=80',
+    3,'Mazda3 Front View',TRUE),
+('https://images.unsplash.com/photo-1562614528-47b2bcb5ee1c?ixid=M3w4MjcwNjd8MHwxfHNlYXJjaHwyfHxtYXpkYSUyMDN8ZW58MHx8fHwxNzgzNjI1NzYyfDA&ixlib=rb-4.1.0&w=100&fit=max&q=80',
+    3,'Mazda3 Side View',FALSE),
+('https://images.unsplash.com/photo-1615849551444-c48741741ff2?ixid=M3w4MjcwNjd8MHwxfHNlYXJjaHwzfHxtYXpkYSUyMDN8ZW58MHx8fHwxNzgzNjI1NzYyfDA&ixlib=rb-4.1.0&w=100&fit=max&q=80',
+    3,'Mazda3 Interior',FALSE),
 
 -- Hyundai Elantra
-('/images/vehicles/hyundai-elantra-front.jpg',4,'Hyundai Elantra Front View',TRUE),
-('/images/vehicles/hyundai-elantra-side.jpg',4,'Hyundai Elantra Side View',FALSE),
-('/images/vehicles/hyundai-elantra-interior.jpg',4,'Hyundai Elantra Interior',FALSE),
+('https://images.unsplash.com/photo-1707325653284-49057765e44c?ixid=M3w4MjcwNjd8MHwxfHNlYXJjaHwxfHxoeXVuZGFpJTIwZWxhbnRyYXxlbnwwfHx8fDE3ODM2MjU5NDF8MA&ixlib=rb-4.1.0&w=100&fit=max&q=80',
+    4,'Hyundai Elantra Front View',TRUE),
+('https://images.unsplash.com/photo-1649963233289-b9ecd40c4c77?ixid=M3w4MjcwNjd8MHwxfHNlYXJjaHwyfHxoeXVuZGFpJTIwZWxhbnRyYXxlbnwwfHx8fDE3ODM2MjU5NDF8MA&ixlib=rb-4.1.0&w=100&fit=max&q=80',
+    4,'Hyundai Elantra Side View',FALSE),
+('https://images.unsplash.com/photo-1629678212150-d928baa670f0?ixid=M3w4MjcwNjd8MHwxfHNlYXJjaHwzfHxoeXVuZGFpJTIwZWxhbnRyYXxlbnwwfHx8fDE3ODM2MjU5NDF8MA&ixlib=rb-4.1.0&w=100&fit=max&q=80',
+    4,'Hyundai Elantra Interior',FALSE),
 
 -- Nissan Altima
-('/images/vehicles/nissan-altima-front.jpg',5,'Nissan Altima Front View',TRUE),
-('/images/vehicles/nissan-altima-side.jpg',5,'Nissan Altima Side View',FALSE),
-('/images/vehicles/nissan-altima-interior.jpg',5,'Nissan Altima Interior',FALSE),
+('https://images.unsplash.com/photo-1581540222194-0def2dda95b8?ixid=M3w4MjcwNjd8MHwxfHNlYXJjaHwxfHxuaXNzYW4lMjBhbHRpbWF8ZW58MHx8fHwxNzgzNjI2MTA5fDA&ixlib=rb-4.1.0&w=100&fit=max&q=80',
+    5,'Nissan Altima Front View',TRUE),
+('https://images.unsplash.com/photo-1575501707067-0e4c7db2a950?ixid=M3w4MjcwNjd8MHwxfHNlYXJjaHwyfHxuaXNzYW4lMjBhbHRpbWF8ZW58MHx8fHwxNzgzNjI2MTA5fDA&ixlib=rb-4.1.0&w=100&fit=max&q=80',
+    5,'Nissan Altima Side View',FALSE),
+('https://images.unsplash.com/photo-1609250687610-95d4f56261a6?ixid=M3w4MjcwNjd8MHwxfHNlYXJjaHwzfHxuaXNzYW4lMjBhbHRpbWF8ZW58MHx8fHwxNzgzNjI2MTA5fDA&ixlib=rb-4.1.0&w=100&fit=max&q=80',
+    5,'Nissan Altima Interior',FALSE),
 
 -- Toyota RAV4
-('/images/vehicles/toyota-rav4-front.jpg',6,'Toyota RAV4 Front View',TRUE),
-('/images/vehicles/toyota-rav4-side.jpg',6,'Toyota RAV4 Side View',FALSE),
-('/images/vehicles/toyota-rav4-interior.jpg',6,'Toyota RAV4 Interior',FALSE),
+('https://images.unsplash.com/photo-1617469767053-d3b523a0b982?ixid=M3w4MjcwNjd8MHwxfHNlYXJjaHwxfHx0b3lvdGElMjByYXY0fGVufDB8fHx8MTc4MzYyNjE3N3ww&ixlib=rb-4.1.0&w=100&fit=max&q=80',
+    6,'Toyota RAV4 Front View',TRUE),
+('https://images.unsplash.com/photo-1622210642960-0f6a2cdbdc9f?ixid=M3w4MjcwNjd8MHwxfHNlYXJjaHwyfHx0b3lvdGElMjByYXY0fGVufDB8fHx8MTc4MzYyNjE3N3ww&ixlib=rb-4.1.0&w=100&fit=max&q=80',
+    6,'Toyota RAV4 Side View',FALSE),
+('https://images.unsplash.com/photo-1706509234538-9831b1b33d66?ixid=M3w4MjcwNjd8MHwxfHNlYXJjaHwzfHx0b3lvdGElMjByYXY0fGVufDB8fHx8MTc4MzYyNjE3N3ww&ixlib=rb-4.1.0&w=100&fit=max&q=80',
+    6,'Toyota RAV4 Interior',FALSE),
 
 -- Honda CR-V
-('/images/vehicles/honda-crv-front.jpg',7,'Honda CR-V Front View',TRUE),
-('/images/vehicles/honda-crv-side.jpg',7,'Honda CR-V Side View',FALSE),
-('/images/vehicles/honda-crv-interior.jpg',7,'Honda CR-V Interior',FALSE),
+('https://images.unsplash.com/photo-1681697390363-1142eb46b76d?ixid=M3w4MjcwNjd8MHwxfHNlYXJjaHwxfHxob25kYSUyMGNydnxlbnwwfHx8fDE3ODM2MjY0NTB8MA&ixlib=rb-4.1.0&w=100&fit=max&q=80',
+    7,'Honda CR-V Front View',TRUE),
+('https://images.unsplash.com/photo-1708148246994-b7b3c818090d?ixid=M3w4MjcwNjd8MHwxfHNlYXJjaHwyfHxob25kYSUyMGNydnxlbnwwfHx8fDE3ODM2MjY0NTB8MA&ixlib=rb-4.1.0&w=100&fit=max&q=80',
+    7,'Honda CR-V Side View',FALSE),
+('https://images.unsplash.com/photo-1623597780975-38ccd5030c83?ixid=M3w4MjcwNjd8MHwxfHNlYXJjaHwzfHxob25kYSUyMGNydnxlbnwwfHx8fDE3ODM2MjY0NTB8MA&ixlib=rb-4.1.0&w=100&fit=max&q=80',
+    7,'Honda CR-V Interior',FALSE),
 
 -- Ford Explorer
-('/images/vehicles/ford-explorer-front.jpg',8,'Ford Explorer Front View',TRUE),
-('/images/vehicles/ford-explorer-side.jpg',8,'Ford Explorer Side View',FALSE),
-('/images/vehicles/ford-explorer-interior.jpg',8,'Ford Explorer Interior',FALSE),
+('https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?ixid=M3w4MjcwNjd8MHwxfHNlYXJjaHwxfHxmb3JkJTIwZXhwbG9yZXJ8ZW58MHx8fHwxNzgzNjI2NTA0fDA&ixlib=rb-4.1.0&w=100&fit=max&q=80',
+    8,'Ford Explorer Front View',TRUE),
+('https://images.unsplash.com/photo-1606611013016-969c19ba27bb?ixid=M3w4MjcwNjd8MHwxfHNlYXJjaHwyfHxmb3JkJTIwZXhwbG9yZXJ8ZW58MHx8fHwxNzgzNjI2NTA0fDA&ixlib=rb-4.1.0&w=100&fit=max&q=80',
+    8,'Ford Explorer Side View',FALSE),
+('https://images.unsplash.com/photo-1670069247956-1a6dfee5338e?ixid=M3w4MjcwNjd8MHwxfHNlYXJjaHwzfHxmb3JkJTIwZXhwbG9yZXJ8ZW58MHx8fHwxNzgzNjI2NTA0fDA&ixlib=rb-4.1.0&w=100&fit=max&q=80',
+    8,'Ford Explorer Interior',FALSE),
 
 -- Jeep Grand Cherokee
-('/images/vehicles/jeep-grand-cherokee-front.jpg',9,'Jeep Grand Cherokee Front View',TRUE),
-('/images/vehicles/jeep-grand-cherokee-side.jpg',9,'Jeep Grand Cherokee Side View',FALSE),
-('/images/vehicles/jeep-grand-cherokee-interior.jpg',9,'Jeep Grand Cherokee Interior',FALSE),
+('https://images.unsplash.com/photo-1511527844068-006b95d162c2?ixid=M3w4MjcwNjd8MHwxfHNlYXJjaHwxfHxqZWVwJTIwZ3JhbmQlMjBjaGVyb2tlZXxlbnwwfHx8fDE3ODM2MjY1NjZ8MA&ixlib=rb-4.1.0&w=100&fit=max&q=80',
+    9,'Jeep Grand Cherokee Front View',TRUE),
+('https://images.unsplash.com/photo-1618353482480-61ca5a9a7879?ixid=M3w4MjcwNjd8MHwxfHNlYXJjaHwyfHxqZWVwJTIwZ3JhbmQlMjBjaGVyb2tlZXxlbnwwfHx8fDE3ODM2MjY1NjZ8MA&ixlib=rb-4.1.0&w=100&fit=max&q=80',
+    9,'Jeep Grand Cherokee Side View',FALSE),
+('https://images.unsplash.com/photo-1616453181857-bc79ef9d66c6?ixid=M3w4MjcwNjd8MHwxfHNlYXJjaHwzfHxqZWVwJTIwZ3JhbmQlMjBjaGVyb2tlZXxlbnwwfHx8fDE3ODM2MjY1NjZ8MA&ixlib=rb-4.1.0&w=100&fit=max&q=80',
+    9,'Jeep Grand Cherokee Interior',FALSE),
 
 -- Subaru Forester
-('/images/vehicles/subaru-forester-front.jpg',10,'Subaru Forester Front View',TRUE),
-('/images/vehicles/subaru-forester-side.jpg',10,'Subaru Forester Side View',FALSE),
-('/images/vehicles/subaru-forester-interior.jpg',10,'Subaru Forester Interior',FALSE),
+('https://images.unsplash.com/photo-1722542517938-aa6a98d25235?ixid=M3w4MjcwNjd8MHwxfHNlYXJjaHwxfHxzdWJhcnUlMjBmb3Jlc3RlcnxlbnwwfHx8fDE3ODM2MjY2Mzh8MA&ixlib=rb-4.1.0&w=100&fit=max&q=80',
+    10,'Subaru Forester Front View',TRUE),
+('https://images.unsplash.com/photo-1687048988997-ec57f83ea3bd?ixid=M3w4MjcwNjd8MHwxfHNlYXJjaHwyfHxzdWJhcnUlMjBmb3Jlc3RlcnxlbnwwfHx8fDE3ODM2MjY2Mzh8MA&ixlib=rb-4.1.0&w=100&fit=max&q=80',
+    10,'Subaru Forester Side View',FALSE),
+('https://images.unsplash.com/photo-1631913551163-0dd28fd69e90?ixid=M3w4MjcwNjd8MHwxfHNlYXJjaHwzfHxzdWJhcnUlMjBmb3Jlc3RlcnxlbnwwfHx8fDE3ODM2MjY2Mzh8MA&ixlib=rb-4.1.0&w=100&fit=max&q=80',
+    10,'Subaru Forester Interior',FALSE),
 
 -- Ford F-150
-('/images/vehicles/ford-f150-front.jpg',11,'Ford F-150 Front View',TRUE),
-('/images/vehicles/ford-f150-side.jpg',11,'Ford F-150 Side View',FALSE),
-('/images/vehicles/ford-f150-interior.jpg',11,'Ford F-150 Interior',FALSE),
+('https://images.unsplash.com/photo-1589981941324-27c29919de98?ixid=M3w4MjcwNjd8MHwxfHNlYXJjaHwxfHxmb3JkJTIwZi0xNTB8ZW58MHx8fHwxNzgzNjI2Njk2fDA&ixlib=rb-4.1.0&w=100&fit=max&q=80',
+    11,'Ford F-150 Front View',TRUE),
+('https://images.unsplash.com/photo-1590053936004-faca6038bfec?ixid=M3w4MjcwNjd8MHwxfHNlYXJjaHwyfHxmb3JkJTIwZi0xNTB8ZW58MHx8fHwxNzgzNjI2Njk2fDA&ixlib=rb-4.1.0&w=100&fit=max&q=80',
+    11,'Ford F-150 Side View',FALSE),
+('https://images.unsplash.com/photo-1704222961369-bf5738613878?ixid=M3w4MjcwNjd8MHwxfHNlYXJjaHwzfHxmb3JkJTIwZi0xNTB8ZW58MHx8fHwxNzgzNjI2Njk2fDA&ixlib=rb-4.1.0&w=100&fit=max&q=80',
+    11,'Ford F-150 Interior',FALSE),
 
 -- Chevrolet Silverado
-('/images/vehicles/chevy-silverado-front.jpg',12,'Chevrolet Silverado Front View',TRUE),
-('/images/vehicles/chevy-silverado-side.jpg',12,'Chevrolet Silverado Side View',FALSE),
-('/images/vehicles/chevy-silverado-interior.jpg',12,'Chevrolet Silverado Interior',FALSE),
+('https://images.unsplash.com/photo-1590456744030-8b9128517cbb?ixid=M3w4MjcwNjd8MHwxfHNlYXJjaHwxfHxjaGV2cm9sZXQlMjBzaWx2ZXJhZG98ZW58MHx8fHwxNzgzNjI2NzU2fDA&ixlib=rb-4.1.0&w=100&fit=max&q=80',
+    12,'Chevrolet Silverado Front View',TRUE),
+('https://images.unsplash.com/photo-1597730071805-f87fe40f6796?ixid=M3w4MjcwNjd8MHwxfHNlYXJjaHwyfHxjaGV2cm9sZXQlMjBzaWx2ZXJhZG98ZW58MHx8fHwxNzgzNjI2NzU2fDA&ixlib=rb-4.1.0&w=100&fit=max&q=80',
+    12,'Chevrolet Silverado Side View',FALSE),
+('https://images.unsplash.com/photo-1645830102962-f2716eed466d?ixid=M3w4MjcwNjd8MHwxfHNlYXJjaHwzfHxjaGV2cm9sZXQlMjBzaWx2ZXJhZG98ZW58MHx8fHwxNzgzNjI2NzU2fDA&ixlib=rb-4.1.0&w=100&fit=max&q=80',
+    12,'Chevrolet Silverado Interior',FALSE),
 
 -- Ram 1500
-('/images/vehicles/ram-1500-front.jpg',13,'Ram 1500 Front View',TRUE),
-('/images/vehicles/ram-1500-side.jpg',13,'Ram 1500 Side View',FALSE),
-('/images/vehicles/ram-1500-interior.jpg',13,'Ram 1500 Interior',FALSE),
+('https://images.unsplash.com/photo-1753476778215-a49f777cd185?ixid=M3w4MjcwNjd8MHwxfHNlYXJjaHwxfHxyYW0lMjAxNTAwfGVufDB8fHx8MTc4MzYyNjgwNXww&ixlib=rb-4.1.0&w=100&fit=max&q=80',
+    13,'Ram 1500 Front View',TRUE),
+('https://images.unsplash.com/photo-1626669249177-9fe9dbe7e825?ixid=M3w4MjcwNjd8MHwxfHNlYXJjaHwyfHxyYW0lMjAxNTAwfGVufDB8fHx8MTc4MzYyNjgwNXww&ixlib=rb-4.1.0&w=100&fit=max&q=80',
+    13,'Ram 1500 Side View',FALSE),
+('https://images.unsplash.com/photo-1753476768634-d3f06127c7d1?ixid=M3w4MjcwNjd8MHwxfHNlYXJjaHwzfHxyYW0lMjAxNTAwfGVufDB8fHx8MTc4MzYyNjgwNXww&ixlib=rb-4.1.0&w=100&fit=max&q=80',
+    13,'Ram 1500 Interior',FALSE),
 
 -- Toyota Tacoma
-('/images/vehicles/toyota-tacoma-front.jpg',14,'Toyota Tacoma Front View',TRUE),
-('/images/vehicles/toyota-tacoma-side.jpg',14,'Toyota Tacoma Side View',FALSE),
-('/images/vehicles/toyota-tacoma-interior.jpg',14,'Toyota Tacoma Interior',FALSE),
+('https://images.unsplash.com/photo-1559416523-140ddc3d238c?ixid=M3w4MjcwNjd8MHwxfHNlYXJjaHwxfHx0b3lvdGElMjB0YWNvbWF8ZW58MHx8fHwxNzgzNjI2ODYzfDA&ixlib=rb-4.1.0&w=100&fit=max&q=80',
+    14,'Toyota Tacoma Front View',TRUE),
+('https://images.unsplash.com/photo-1641431616381-3f0613d82ca7?ixid=M3w4MjcwNjd8MHwxfHNlYXJjaHwyfHx0b3lvdGElMjB0YWNvbWF8ZW58MHx8fHwxNzgzNjI2ODYzfDA&ixlib=rb-4.1.0&w=100&fit=max&q=80',
+    14,'Toyota Tacoma Side View',FALSE),
+('https://images.unsplash.com/photo-1641333326784-24a9c21d3c4e?ixid=M3w4MjcwNjd8MHwxfHNlYXJjaHwzfHx0b3lvdGElMjB0YWNvbWF8ZW58MHx8fHwxNzgzNjI2ODYzfDA&ixlib=rb-4.1.0&w=100&fit=max&q=80',
+    14,'Toyota Tacoma Interior',FALSE),
 
 -- GMC Sierra
-('/images/vehicles/gmc-sierra-front.jpg',15,'GMC Sierra Front View',TRUE),
-('/images/vehicles/gmc-sierra-side.jpg',15,'GMC Sierra Side View',FALSE),
-('/images/vehicles/gmc-sierra-interior.jpg',15,'GMC Sierra Interior',FALSE),
+('https://images.unsplash.com/photo-1657145076873-fbee01c714db?ixid=M3w4MjcwNjd8MHwxfHNlYXJjaHwxfHxnbWMlMjBzaWVycmF8ZW58MHx8fHwxNzgzNjI3MDQwfDA&ixlib=rb-4.1.0&w=100&fit=max&q=80',
+    15,'GMC Sierra Front View',TRUE),
+('https://images.unsplash.com/photo-1674831422740-5ab6ba4a3d72?ixid=M3w4MjcwNjd8MHwxfHNlYXJjaHwyfHxnbWMlMjBzaWVycmF8ZW58MHx8fHwxNzgzNjI3MDQwfDA&ixlib=rb-4.1.0&w=100&fit=max&q=80',
+    15,'GMC Sierra Side View',FALSE),
+('https://images.unsplash.com/photo-1601919706273-88125e95ba71?ixid=M3w4MjcwNjd8MHwxfHNlYXJjaHwzfHxnbWMlMjBzaWVycmF8ZW58MHx8fHwxNzgzNjI3MDQwfDA&ixlib=rb-4.1.0&w=100&fit=max&q=80',
+    15,'GMC Sierra Interior',FALSE),
 
 -- Honda Odyssey
-('/images/vehicles/honda-odyssey-front.jpg',16,'Honda Odyssey Front View',TRUE),
-('/images/vehicles/honda-odyssey-side.jpg',16,'Honda Odyssey Side View',FALSE),
-('/images/vehicles/honda-odyssey-interior.jpg',16,'Honda Odyssey Interior',FALSE),
+('https://images.unsplash.com/photo-1614152204567-04903fff36b0?ixid=M3w4MjcwNjd8MHwxfHNlYXJjaHwxfHxob25kYSUyMG9keXNzZXl8ZW58MHx8fHwxNzgzNjI3MTAzfDA&ixlib=rb-4.1.0&w=100&fit=max&q=80',
+    16,'Honda Odyssey Front View',TRUE),
+('https://images.unsplash.com/photo-1661501315831-d7a0aba599be?ixid=M3w4MjcwNjd8MHwxfHNlYXJjaHwyfHxob25kYSUyMG9keXNzZXl8ZW58MHx8fHwxNzgzNjI3MTAzfDA&ixlib=rb-4.1.0&w=100&fit=max&q=80',
+    16,'Honda Odyssey Side View',FALSE),
+('https://images.unsplash.com/photo-1711226876939-2e5fb5fa0096?ixid=M3w4MjcwNjd8MHwxfHNlYXJjaHwzfHxob25kYSUyMG9keXNzZXl8ZW58MHx8fHwxNzgzNjI3MTAzfDA&ixlib=rb-4.1.0&w=100&fit=max&q=80',
+    16,'Honda Odyssey Interior',FALSE),
 
 -- Toyota Sienna
-('/images/vehicles/toyota-sienna-front.jpg',17,'Toyota Sienna Front View',TRUE),
-('/images/vehicles/toyota-sienna-side.jpg',17,'Toyota Sienna Side View',FALSE),
-('/images/vehicles/toyota-sienna-interior.jpg',17,'Toyota Sienna Interior',FALSE),
+('https://images.unsplash.com/photo-1720545044233-d2ac77fa6030?ixid=M3w4MjcwNjd8MHwxfHNlYXJjaHwxfHx0b3lvdGElMjBzaWVubmF8ZW58MHx8fHwxNzgzNjI3MTYyfDA&ixlib=rb-4.1.0&w=800&fit=max&q=80',
+    17,'Toyota Sienna Front View',TRUE),
+('https://images.unsplash.com/photo-1573984324369-3899ec5b3a9e?ixid=M3w4MjcwNjd8MHwxfHNlYXJjaHwyfHx0b3lvdGElMjBzaWVubmF8ZW58MHx8fHwxNzgzNjI3MTYyfDA&ixlib=rb-4.1.0&w=800&fit=max&q=80',
+    17,'Toyota Sienna Side View',FALSE),
+('https://images.unsplash.com/photo-1639956624484-adc68d3c48a0?ixid=M3w4MjcwNjd8MHwxfHNlYXJjaHwzfHx0b3lvdGElMjBzaWVubmF8ZW58MHx8fHwxNzgzNjI3MTYyfDA&ixlib=rb-4.1.0&w=800&fit=max&q=80',
+    17,'Toyota Sienna Interior',FALSE),
 
 -- Chrysler Pacifica
-('/images/vehicles/chrysler-pacifica-front.jpg',18,'Chrysler Pacifica Front View',TRUE),
-('/images/vehicles/chrysler-pacifica-side.jpg',18,'Chrysler Pacifica Side View',FALSE),
-('/images/vehicles/chrysler-pacifica-interior.jpg',18,'Chrysler Pacifica Interior',FALSE),
+('https://images.unsplash.com/photo-1623371857133-6d5552bbdc13?ixid=M3w4MjcwNjd8MHwxfHNlYXJjaHwxfHxjaHJ5c2xlciUyMHBhY2lmaWNhfGVufDB8fHx8MTc4MzYyNzU0Mnww&ixlib=rb-4.1.0&w=800&fit=max&q=80',
+    18,'Chrysler Pacifica Front View',TRUE),
+('https://images.unsplash.com/photo-1623371871371-5ce94f7188df?ixid=M3w4MjcwNjd8MHwxfHNlYXJjaHwyfHxjaHJ5c2xlciUyMHBhY2lmaWNhfGVufDB8fHx8MTc4MzYyNzU0Mnww&ixlib=rb-4.1.0&w=800&fit=max&q=80',
+    18,'Chrysler Pacifica Side View',FALSE),
+('https://images.unsplash.com/photo-1623372090464-c9481c05dd71?ixid=M3w4MjcwNjd8MHwxfHNlYXJjaHwzfHxjaHJ5c2xlciUyMHBhY2lmaWNhfGVufDB8fHx8MTc4MzYyNzU0Mnww&ixlib=rb-4.1.0&w=800&fit=max&q=80',
+    18,'Chrysler Pacifica Interior',FALSE),
 
 -- Kia Carnival
-('/images/vehicles/kia-carnival-front.jpg',19,'Kia Carnival Front View',TRUE),
-('/images/vehicles/kia-carnival-side.jpg',19,'Kia Carnival Side View',FALSE),
-('/images/vehicles/kia-carnival-interior.jpg',19,'Kia Carnival Interior',FALSE),
+('https://images.unsplash.com/photo-1672216197924-89b8d14a47b1?ixid=M3w4MjcwNjd8MHwxfHNlYXJjaHwxfHxraWElMjBjYXJuaXZhbHxlbnwwfHx8fDE3ODM2Mjc2MDF8MA&ixlib=rb-4.1.0&w=800&fit=max&q=80',
+    19,'Kia Carnival Front View',TRUE),
+('https://images.unsplash.com/photo-1709791195523-4e9382c2dc6b?ixid=M3w4MjcwNjd8MHwxfHNlYXJjaHwyfHxraWElMjBjYXJuaXZhbHxlbnwwfHx8fDE3ODM2Mjc2MDF8MA&ixlib=rb-4.1.0&w=800&fit=max&q=80',
+    19,'Kia Carnival Side View',FALSE),
+('https://images.unsplash.com/photo-1653022779664-3a9d0616548c?ixid=M3w4MjcwNjd8MHwxfHNlYXJjaHwzfHxraWElMjBjYXJuaXZhbHxlbnwwfHx8fDE3ODM2Mjc2MDF8MA&ixlib=rb-4.1.0&w=800&fit=max&q=80',
+    19,'Kia Carnival Interior',FALSE),
 
 -- Ford Transit Connect
-('/images/vehicles/ford-transit-connect-front.jpg',20,'Ford Transit Connect Front View',TRUE),
-('/images/vehicles/ford-transit-connect-side.jpg',20,'Ford Transit Connect Side View',FALSE),
-('/images/vehicles/ford-transit-connect-interior.jpg',20,'Ford Transit Connect Interior',FALSE);
+('https://images.unsplash.com/photo-1738015460552-4096148534ad?ixid=M3w4MjcwNjd8MHwxfHNlYXJjaHwxfHxmb3JkJTIwdHJhbnNpdCUyMGNvbm5lY3R8ZW58MHx8fHwxNzgzNjI3NjcxfDA&ixlib=rb-4.1.0&w=800&fit=max&q=80',
+    20,'Ford Transit Connect Front View',TRUE),
+('https://images.unsplash.com/photo-1712742353511-4462353204b8?ixid=M3w4MjcwNjd8MHwxfHNlYXJjaHwyfHxmb3JkJTIwdHJhbnNpdCUyMGNvbm5lY3R8ZW58MHx8fHwxNzgzNjI3NjcxfDA&ixlib=rb-4.1.0&w=800&fit=max&q=80',
+    20,'Ford Transit Connect Side View',FALSE),
+('https://images.unsplash.com/photo-1612390729739-9115a36a7045?ixid=M3w4MjcwNjd8MHwxfHNlYXJjaHwzfHxmb3JkJTIwdHJhbnNpdCUyMGNvbm5lY3R8ZW58MHx8fHwxNzgzNjI3NjcxfDA&ixlib=rb-4.1.0&w=800&fit=max&q=80',
+    20,'Ford Transit Connect Interior',FALSE);
 
 COMMIT;

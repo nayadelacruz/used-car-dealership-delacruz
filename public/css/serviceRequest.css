@@ -279,7 +279,7 @@
     }
 }
 
-.bottonEdit {
+.buttonEdit {
     display: inline-block;
     padding: 0.6rem 1rem;
     background-color: #0077cc;
@@ -354,7 +354,7 @@
         }
     }
 
-    .bottonEdit {
+    .buttonEdit {
         width: 100%;
         text-align: center;
         box-sizing: border-box;

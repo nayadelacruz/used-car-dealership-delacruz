@@ -31,6 +31,11 @@ const app = express();
 // Initialize PostgreSQL session store
 const pgSession = connectPgSimple(session);
 
+// Fixing flash messages no showing correctly in render
+if (!NODE_ENV.includes('dev')) {
+    app.set('trust proxy', 1);
+}
+
 // Configure session middleware
 app.use(session({
     store: new pgSession({
@@ -86,6 +91,18 @@ app.use((req, res, next) => {
 
 // Flash message middleware (must come after session and global middleware)
 app.use(flash);
+
+// Fixing flash messages, temporary code, delete after fixing problem
+app.use((req, res, next) => {
+    console.log({
+        secure: req.secure,
+        hasSession: Boolean(req.session),
+        sessionId: req.sessionID,
+        hasUser: Boolean(req.session?.user)
+    });
+
+    next();
+});
 
 // Middleware to add global data to all templates
 app.use((req, res, next) => {

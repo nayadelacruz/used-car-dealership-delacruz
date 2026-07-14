@@ -1,7 +1,3 @@
-
-
-import { Router } from 'express';
-import { body, validationResult } from 'express-validator';
 import {
     createReview,
     getReviewById,
@@ -11,15 +7,6 @@ import {
     getAllReviews,
     deleteReviewByAdmin
 } from '../../models/forms/reviews.js';
-
-const reviewValidation = [
-    body('comment')
-        .trim()
-        .notEmpty()
-        .withMessage('Review comment is required.')
-        .isLength({ min: 5 })
-        .withMessage('Review must be at least 5 characters long.')
-];
 
 const showReviewForm = (req, res) => {
     const { vehicleId } =req.params;
@@ -31,15 +18,6 @@ const showReviewForm = (req, res) => {
 
 // create new review has to be loggin
 const handleReviewSubmission = async (req, res) => {
-    const errors = validationResult(req);
-    if (!errors.isEmpty()) {
-        // Store each validation error as a separate flash message
-        errors.array().forEach(error => {
-            req.flash('error', error.msg);
-        });
-        return res.redirect(`/reviews/new/${req.body.vehicleId}`);
-    }
-
     try {
         const userId = req.session.user.id;
         // Extract validated data
@@ -97,16 +75,6 @@ const showEditReviewForm = async (req, res) => {
 };
 
 const handleReviewEdit = async (req, res) => {
-    const errors = validationResult(req);
-
-    if (!errors.isEmpty()) {
-        errors.array().forEach(error => {
-            req.flash('error', error.msg);
-        });
-
-        return res.redirect(`/reviews/edit/${req.params.reviewId}`);
-    }
-
     try {
         const { reviewId } = req.params;
         const { comment } = req.body;
@@ -178,7 +146,6 @@ const handleAdminDeleteReview = async (req, res) => {
 };   
 
 export {
-    reviewValidation,
     showReviewForm,
     handleReviewSubmission,
     showUserReviews,

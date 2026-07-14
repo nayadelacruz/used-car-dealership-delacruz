@@ -1,56 +1,15 @@
 import { Router } from 'express';
-import { body, validationResult } from 'express-validator';
 import bcrypt from 'bcrypt';
 import { emailExists, saveUser, getAllUsers, getUserById, updateUser, deleteUser} from '../../models/forms/registration.js';
 import { requireLogin } from '../../middleware/auth.js';
+import {
+    registrationValidation,
+    editValidation
+} from '../../middleware/validation/registrationValidation.js';
+
+import validationErrorHandler from '../../middleware/validation/validationErrorHandler.js';
+
 const router = Router();
-
-/**
- * Validation rules for user registration
- */
-const registrationValidation = [
-    body('name')
-        .trim()
-        .isLength({ min: 2 })
-        .withMessage('Name must be at least 2 characters'),
-    body('email')
-        .trim()
-        .isEmail()
-        .normalizeEmail()
-        .withMessage('Must be a valid email address'),
-    body('emailConfirm')
-        .trim()
-        .custom((value, { req }) => value === req.body.email)
-        .withMessage('Email addresses must match'),
-    body('password')
-        .isLength({ min: 8 })
-        .matches(/[0-9]/)
-        .withMessage('Password must contain at least one number')
-        .matches(/[!@#$%^&*]/)
-        .withMessage('Password must contain at least one special character'),
-    body('passwordConfirm')
-        .custom((value, { req }) => value === req.body.password)
-        .withMessage('Passwords must match')
-];
-
-/**
- * Validation rules for editing user accounts
- */
-const editValidation = [
-    body('name')
-        .trim()
-        .isLength({ min: 2, max: 100 })
-        .withMessage('Name must be between 2 and 100 characters')
-        .matches(/^[a-zA-Z\s'-]+$/)
-        .withMessage('Name can only contain letters, spaces, hyphens, and apostrophes'),
-    body('email')
-        .trim()
-        .isEmail()
-        .normalizeEmail()
-        .withMessage('Must be a valid email address')
-        .isLength({ max: 255 })
-        .withMessage('Email address is too long')
-];
 
 /**
  * Display the registration form page.
@@ -66,16 +25,6 @@ const showRegistrationForm = (req, res) => {
  * Handle user registration with validation and password hashing.
  */
 const processRegistration = async (req, res) => {
-
-    const errors = validationResult(req);
-
-    if (!errors.isEmpty()) {
-        errors.array().forEach(error => {
-            req.flash('error', error.msg);
-        });
-        return res.redirect('/register');
-    }
-
     // Extract validated data from request body
     try {
         const {name, email, password} = req.body;
@@ -153,15 +102,6 @@ const showEditAccountForm = async (req, res) => {
  * Process account edit form submission
  */
 const processEditAccount = async (req, res) => {
-    const errors = validationResult(req);
-
-    if (!errors.isEmpty()) {
-        errors.array().forEach(error => {
-            req.flash('error', error.msg);
-        });
-        return res.redirect(`/register/${req.params.id}/edit`);
-    }
-
     const targetUserId = parseInt(req.params.id);
     const currentUser = req.session.user;
     const { name, email } = req.body;
@@ -251,12 +191,17 @@ router.get('/', showRegistrationForm);
 /**
  * POST /register - Handle registration form submission with validation
  */
-router.post('/', registrationValidation, processRegistration);
+router.post(
+    '/',
+    registrationValidation,
+    validationErrorHandler('/register'),
+    processRegistration
+);
 
 /**
  * GET /register/list - Display all registered users
  */
-router.get('/list', showAllUsers);
+router.get('/list', requireLogin, showAllUsers);
 
 /**
  * GET /register/:id/edit - Display edit account form
@@ -266,7 +211,15 @@ router.get('/:id/edit', requireLogin, showEditAccountForm);
 /**
  * POST /register/:id/edit - Process account edit
  */
-router.post('/:id/edit', requireLogin, editValidation, processEditAccount);
+router.post(
+    '/:id/edit',
+    requireLogin,
+    editValidation,
+    validationErrorHandler(
+        req => `/register/${req.params.id}/edit`
+    ),
+    processEditAccount
+);
 
 /**
  * POST /register/:id/delete - Delete user account

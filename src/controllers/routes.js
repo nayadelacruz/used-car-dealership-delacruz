@@ -8,10 +8,18 @@ import { processLogout, showDashboard } from './forms/login.js';
 import { requireLogin, requireRole } from '../middleware/auth.js';
 import { Router } from 'express';
 import { body } from 'express-validator';
-import { reviewValidation, showReviewForm, handleReviewSubmission, showUserReviews,
-        showEditReviewForm, handleReviewEdit, handleDeleteReview, showAllReviews,
-        handleAdminDeleteReview
+import {
+    showReviewForm,
+    handleReviewSubmission,
+    showUserReviews,
+    showEditReviewForm,
+    handleReviewEdit,
+    handleDeleteReview,
+    showAllReviews,
+    handleAdminDeleteReview
         } from './forms/reviews.js';
+import { reviewsValidation } from '../middleware/validation/reviewsValidation.js';        
+import validationErrorHandler from '../middleware/validation/validationErrorHandler.js';
 import serviceRequestRoutes from './forms/serviceRequest.js';        
 //import { editReview } from '../models/forms/reviews.js';
 import categoryRoutes from './vehicles/manageVehicleCategories.js';
@@ -102,7 +110,10 @@ router.get('/reviews/new/:vehicleId', requireLogin, showReviewForm);
 router.post(
     '/reviews',
     requireLogin,
-    reviewValidation,
+    reviewsValidation,
+    validationErrorHandler(
+        req => `/reviews/new/${req.body.vehicleId}`
+    ),
     handleReviewSubmission
 );
 router.get('/reviews/myReviews', requireLogin, showUserReviews);
@@ -110,7 +121,10 @@ router.get('/reviews/edit/:reviewId', requireLogin, showEditReviewForm);
 router.post(
     '/reviews/edit/:reviewId',
     requireLogin,
-    reviewValidation,
+    reviewsValidation,
+    validationErrorHandler(
+        req => `/reviews/edit/${req.params.reviewId}`
+    ),
     handleReviewEdit
 );
 router.post('/reviews/delete/:reviewId', requireLogin, handleDeleteReview);

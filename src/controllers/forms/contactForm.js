@@ -1,6 +1,7 @@
 import { Router } from 'express';
-import { body, validationResult } from 'express-validator';
 import { createContactForm, getAllContactForms } from '../../models/forms/contactForm.js';
+import { contactFormValidation } from '../../middleware/validation/contactFormValidation.js';
+import validationErrorHandler from '../../middleware/validation/validationErrorHandler.js';
 
 const router = Router();
 
@@ -19,17 +20,6 @@ const showContactForm = (req, res) => {
  * If validation fails, log errors and redirect back to form.
  */
 const handleContactSubmission = async (req, res) => {
-    // Check for validation errors
-    const errors = validationResult(req);
-
-    // Inside your validation error check
-    if (!errors.isEmpty()) {
-        // Store each validation error as a separate flash message
-        errors.array().forEach(error => {
-            req.flash('error', error.msg);
-        });
-        return res.redirect('/contactForm');
-    }
 
     try {
         // Extract validated data
@@ -70,33 +60,14 @@ const showContactResponses = async (req, res) => {
 router.get('/', showContactForm);
 
 /**
- * POST /contact - Handle contact form submission with validation
+ * POST /contact - Handle contact form submission
  */
-router.post('/',
-    [
-        body('subject')
-            .trim()
-            .isLength({ min: 2, max: 255 })
-            .withMessage('Subject must be between 2 and 255 characters')
-            .matches(/^[a-zA-Z0-9\s\-.,!?]+$/)
-            .withMessage('Subject contains invalid characters'),
-        body('message')
-            .trim()
-            .isLength({ min: 10, max: 2000 })
-            .withMessage('Message must be between 10 and 2000 characters')
-            .custom((value) => {
-                // Check for spam patterns (excessive repetition)
-                const words = value.split(/\s+/);
-                const uniqueWords = new Set(words);
-                if (words.length > 20 && uniqueWords.size / words.length < 0.3) {
-                    throw new Error('Message appears to be spam');
-                }
-                return true;
-            })
-    ],
+router.post(
+    '/',
+    contactFormValidation,
+    validationErrorHandler('/contactForm'),
     handleContactSubmission
 );
-
 /**
  * GET /contact/responses - Display all contact form submissions
  */

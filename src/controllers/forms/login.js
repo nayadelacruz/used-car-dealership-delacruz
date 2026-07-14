@@ -1,27 +1,8 @@
-import { body, validationResult } from 'express-validator';
 import { findUserByEmail, verifyPassword } from '../../models/forms/login.js';
 import { Router } from 'express';
-
+import { loginValidation } from '../../middleware/validation/loginValidation.js';
+import validationErrorHandler from '../../middleware/validation/validationErrorHandler.js';
 const router = Router();
-
-/**
- * Validation rules for login form
- */
-const loginValidation = [
-    body('email')
-        .trim()
-        .isEmail()
-        .withMessage('Please provide a valid email address')
-        .normalizeEmail()
-        .isLength({ max: 255 })
-        .withMessage('Email address is too long'),
-
-    body('password')
-        .notEmpty()
-        .withMessage('Password is required')
-        .isLength({ min: 8, max: 128 })
-        .withMessage('Password must be between 8 and 128 characters')
-];
 
 /**
  * Display the login form.
@@ -37,16 +18,6 @@ const showLoginForm = (req, res) => {
  * Process login form submission.
  */
 const processLogin = async (req, res) => {
-    // Check for validation errors
-    const errors = validationResult(req);
-
-    if (!errors.isEmpty()) {
-        errors.array().forEach(error => {
-            req.flash('error', error.msg);
-        });
-        return res.redirect('login');
-    }
-
     const {email, password} =req.body;
 
     try {
@@ -68,8 +39,6 @@ const processLogin = async (req, res) => {
 
         req.session.user = user;
         req.flash('success', `Welcome ${user.name}`);
-        // TEMPORARY
-        console.log(req.session);
         return res.redirect('/dashboard');
 
     } catch (error) {
@@ -150,7 +119,12 @@ const showDashboard = (req, res) => {
 
 // Routes
 router.get('/', showLoginForm);
-router.post('/', loginValidation, processLogin);
+router.post(
+    '/',
+    loginValidation,
+    validationErrorHandler('/login'),
+    processLogin
+);
 
 // Export router as default, and specific functions for root-level routes
 export default router;

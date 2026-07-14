@@ -1,5 +1,4 @@
 import { Router } from 'express';
-import { body, validationResult } from 'express-validator';
 import { requireLogin, requireRole } from '../../middleware/auth.js';
 import {
     createServiceRequest,
@@ -11,6 +10,15 @@ import {
     addServiceRequestNote,
     getServiceRequestNotes
 } from '../../models/forms/serviceRequest.js';
+import {
+    serviceRequestValidation,
+    serviceRequestIdValidation,
+    statusUpdateValidation,
+    serviceRequestNoteValidation
+} from '../../middleware/validation/serviceRequestValidation.js';
+
+import validationErrorHandler
+    from '../../middleware/validation/validationErrorHandler.js';
 
 const router = Router();
 
@@ -21,15 +29,6 @@ const showServiceRequestForm = (req, res) => {
 };
 
 const handleServiceRequestSubmission = async (req, res) => {
-    const errors = validationResult(req);
-
-    if (!errors.isEmpty()) {
-        errors.array().forEach(error => {
-            req.flash('error', error.msg);
-        });
-        return res.redirect('/serviceRequest');
-    }
-
     try {
         const userId = req.session.user.id;
 
@@ -64,46 +63,19 @@ const showServiceRequestHistory = async (req, res) => {
     try {
         const userId = req.session.user.id;
         serviceRequests = await getServiceRequestsByUser(userId);
+
+        return res.render('forms/serviceRequest/history', {
+            title: 'My Service Requests',
+            serviceRequests
+        });
     } catch (error) {
         console.error('Error retrieving service requests:', error);
+        req.flash('error', 'Unable to retrieve your service requests.');
+
+        return res.redirect('/dashboard');
     }
 
-    res.render('forms/serviceRequest/history', {
-        title: 'My Service Requests',
-        serviceRequests
-    });
 };
-
-router.get('/', requireLogin, showServiceRequestForm);
-
-router.post(
-    '/',
-    requireLogin,
-    [
-        body('vehicleMake')
-            .trim()
-            .isLength({ min: 2, max: 50 })
-            .withMessage('Vehicle make must be between 2 and 50 characters'),
-
-        body('vehicleModel')
-            .trim()
-            .isLength({ min: 1, max: 50 })
-            .withMessage('Vehicle model must be between 1 and 50 characters'),
-
-        body('vehicleYear')
-            .trim()
-            .isLength({ min: 4, max: 4 })
-            .withMessage('Vehicle year must be 4 digits'),
-
-        body('serviceDescription')
-            .trim()
-            .isLength({ min: 10, max: 2000 })
-            .withMessage('Service description must be between 10 and 2000 characters')
-    ],
-    handleServiceRequestSubmission
-);
-
-router.get('/history', requireLogin, showServiceRequestHistory);
 
 /**
  * Display all service requests.
@@ -127,12 +99,6 @@ const showAllServiceRequests = async (req, res) => {
     }
 };
 
-router.get(
-    '/allHistory',
-    requireRole('employee', 'admin'),
-    showAllServiceRequests
-);
-
 const showManageServiceRequest = async (req, res) => {
     try {
         const requestId = req.params.id;
@@ -143,7 +109,7 @@ const showManageServiceRequest = async (req, res) => {
 
         if (!serviceRequest) {
             req.flash('error', 'Service request not found.');
-            return res.redirect('/serviceRequest/list');
+            return res.redirect('/serviceRequest/allHistory');
         }
 
         res.render('forms/serviceRequest/manage', {
@@ -156,7 +122,7 @@ const showManageServiceRequest = async (req, res) => {
     } catch (error) {
         console.error('Error loading service request:', error);
         req.flash('error', 'Unable to load service request.');
-        res.redirect('/serviceRequest/list');
+        res.redirect('/serviceRequest/allHistory');
     }
 };
 
@@ -173,7 +139,7 @@ const handleStatusUpdate = async (req, res) => {
     } catch (error) {
         console.error('Error updating service request status:', error);
         req.flash('error', 'Unable to update status.');
-        res.redirect('/serviceRequest/list');
+        res.redirect('/serviceRequest/allHistory');
     }
 };
 
@@ -191,25 +157,54 @@ const handleAddServiceRequestNote = async (req, res) => {
     } catch (error) {
         console.error('Error adding service request note:', error);
         req.flash('error', 'Unable to add note.');
-        res.redirect('/serviceRequest/list');
+        return res.redirect(`/serviceRequest/${requestId}/manage`);
     }
 };
+
+router.get('/', requireLogin, showServiceRequestForm);
+
+router.post(
+    '/',
+    requireLogin,
+    serviceRequestValidation,
+    validationErrorHandler('/serviceRequest'),
+    handleServiceRequestSubmission
+);
+    
+
+router.get('/history', requireLogin, showServiceRequestHistory);
+
+router.get(
+    '/allHistory',
+    requireRole('employee', 'admin'),
+    showAllServiceRequests
+);
 
 router.get(
     '/:id/manage',
     requireRole('employee', 'admin'),
+    serviceRequestIdValidation,
+    validationErrorHandler('/serviceRequest/allHistory'),
     showManageServiceRequest
 );
 
 router.post(
     '/:id/status',
     requireRole('employee', 'admin'),
+    statusUpdateValidation,
+    validationErrorHandler(
+        req => `/serviceRequest/${req.params.id}/manage`
+    ),
     handleStatusUpdate
 );
 
 router.post(
     '/:id/notes',
     requireRole('employee', 'admin'),
+    serviceRequestNoteValidation,
+    validationErrorHandler(
+        req => `/serviceRequest/${req.params.id}/manage`
+    ),
     handleAddServiceRequestNote
 );
 

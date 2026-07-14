@@ -1,6 +1,7 @@
 import { Router } from 'express';
-import { body, validationResult } from 'express-validator';
 import { requireRole } from '../../middleware/auth.js';
+import { editVehicleValidation } from '../../middleware/validation/vehiclesValidation.js';
+import validationErrorHandler from '../../middleware/validation/validationErrorHandler.js';
 import {
     updateVehicleInventory,
     deleteVehicle
@@ -36,16 +37,7 @@ const showEditVehicleForm = async (req, res) => {
 };
 
 const handleEditVehicleSubmission = async (req, res) => {
-    const errors = validationResult(req);
     const vehicleId = req.params.id;
-
-    if (!errors.isEmpty()) {
-        errors.array().forEach(error => {
-            req.flash('error', error.msg);
-        });
-
-        return res.redirect(`/vehicles/${vehicleId}/adminEdit`);
-    }
 
     try {
         const {
@@ -112,43 +104,10 @@ const handleDeleteVehicle = async (req, res) => {
 
     } catch (error) {
         console.error('Error deleting vehicle:', error);
-        req.flash('error', 'Unable to delete vehicle.');
+         req.flash('error', 'Unable to delete vehicle.');
         res.redirect('/vehicles');
     }
 };
-
-const vehicleValidation = [
-    body('make')
-        .trim()
-        .isLength({ min: 2, max: 50 })
-        .withMessage('Make must be between 2 and 50 characters'),
-
-    body('model')
-        .trim()
-        .isLength({ min: 1, max: 50 })
-        .withMessage('Model must be between 1 and 50 characters'),
-
-    body('year')
-        .isInt({ min: 1900, max: 2100 })
-        .withMessage('Year must be valid'),
-
-    body('price')
-        .isFloat({ min: 0 })
-        .withMessage('Price must be a positive number'),
-
-    body('mileage')
-        .isInt({ min: 0 })
-        .withMessage('Mileage must be a positive number'),
-
-    body('categoryId')
-        .notEmpty()
-        .withMessage('Category is required'),
-
-    body('description')
-        .trim()
-        .isLength({ min: 10 })
-        .withMessage('Description must be at least 10 characters')
-];
 
 router.get(
     '/:id/adminEdit',
@@ -159,7 +118,8 @@ router.get(
 router.post(
     '/:id/adminEdit',
     requireRole('admin'),
-    vehicleValidation,
+    editVehicleValidation,
+    validationErrorHandler(req => `/vehicles/${req.params.id}/adminEdit`),
     handleEditVehicleSubmission
 );
 

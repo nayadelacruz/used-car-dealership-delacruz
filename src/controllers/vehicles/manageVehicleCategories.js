@@ -1,7 +1,9 @@
 
 import { Router } from 'express';
-import { body, validationResult } from 'express-validator';
+import { validationResult } from 'express-validator';
 import { requireRole } from '../../middleware/auth.js';
+import { categoryValidation } from '../../middleware/validation/vehicleCategoriesValidation.js';
+import validationErrorHandler from '../../middleware/validation/validationErrorHandler.js';
 import { getAllCategories,
     getCategoryById,
     createCategory,
@@ -37,15 +39,6 @@ const showAddCategoryForm = (req, res) => {
 };
 
 const handleAddCategory = async (req, res) => {
-    const errors = validationResult(req);
-
-    if (!errors.isEmpty()) {
-        errors.array().forEach(error => {
-            req.flash('error', error.msg);
-        });
-        return res.redirect('/categories/new');
-    }
-
     try {
         const { name } = req.body;
 
@@ -134,13 +127,6 @@ const handleDeleteCategory = async (req, res) => {
         res.redirect('/categories/manage');
     }
 };
-
-const categoryValidation = [
-    body('name')
-        .trim()
-        .isLength({ min: 2, max: 100 })
-        .withMessage('Category name must be between 2 and 100 characters')
-];
 
 router.get('/manage', requireRole('admin'), showManageCategories);
 

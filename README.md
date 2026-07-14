@@ -107,6 +107,7 @@ Administrators have full access to the system, including all employee features p
 - Employee account management was not implemented because it was listed as an optional feature.
 - The application is intended for educational purposes and is not production-ready.
 - Additional security improvements (rate limiting, CSRF protection, etc.) could be added in a production environment.
+- You may notice that one of the commits in this repository is attributed to Nefi Aguilar. I completed all of the work on this project myself. Nefi is my husband, and he was using my laptop to work on one of his own projects. When I resumed working on my project, I forgot to switch the Git configuration back to my GitHub email, so a few commits were mistakenly attributed to his account. This was simply a Git configuration oversight, and no one else contributed to the development of this project. I apologize for any confusion this may have caused.
 
 ---
 
